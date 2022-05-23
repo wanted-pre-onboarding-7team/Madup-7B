@@ -1,6 +1,8 @@
 import { useState, MouseEvent } from 'react';
+import { useRecoilState } from 'recoil';
 import cx from 'classnames';
 
+import { adStatusAtom } from 'state/lever';
 import { ArrowDownIcon } from 'assets/svg';
 
 import Summary from './Summary';
@@ -9,7 +11,7 @@ import styles from './manageAd.module.scss';
 
 const ManageAd = () => {
   const [isDropDownOpened, setIsDropDownOpened] = useState(true);
-  const [status, setStatus] = useState('전체');
+  const [status, setStatus] = useRecoilState(adStatusAtom);
 
   const toggleOptionHanlder = () => {
     setIsDropDownOpened((prev) => !prev);
