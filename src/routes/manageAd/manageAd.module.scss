@@ -8,12 +8,26 @@
   border-radius: 20px;
   box-shadow: 0 4px 10px colors.$SHADOW;
 
+  h1 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 25px 0;
+    font-family: Roboto, sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 30px;
+    color: colors.$GRAY800;
+    background: colors.$BACKGROUND;
+  }
+
   .top {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 0 40px;
-    margin: 40px 0;
+    padding: 40px;
+    border-radius: 50%;
 
     .select {
       position: relative;

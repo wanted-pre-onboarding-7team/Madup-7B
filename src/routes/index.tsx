@@ -1,15 +1,22 @@
+import { Routes, Route } from 'react-router-dom';
+
+import Sidebar from 'components/Sidebar';
+import Header from 'components/Header';
 import ManageAd from './manageAd';
+
 import styles from './Routes.module.scss';
 
 const App = () => {
   return (
     <div className={styles.app}>
-      <section className={styles.sideMenu} />
+      <Sidebar />
       <div className={styles.content}>
-        <header />
+        <Header />
         <main>
-          <h1>광고 관리</h1>
-          <ManageAd />
+          <Routes>
+            {/* <Route path='/' element={<Dashboard />} /> */}
+            <Route path='/advertisement' element={<ManageAd />} />
+          </Routes>
         </main>
       </div>
     </div>

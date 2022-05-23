@@ -1,0 +1,28 @@
+@use '/src/styles/constants/colors';
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  height: 80px;
+  background-color: colors.$BACKGROUND;
+
+  section {
+    display: flex;
+    justify-content: space-evenly;
+    width: 230px;
+    margin-top: 20px;
+    margin-right: 40px;
+
+    .headerIcon {
+      width: 19px;
+      margin-top: 6px;
+    }
+
+    span {
+      margin-top: 12px;
+      font-size: 14px;
+    }
+  }
+}

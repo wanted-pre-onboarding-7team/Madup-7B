@@ -1,0 +1,188 @@
+@use '/src/styles/constants/colors';
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 1290px;
+  padding-left: 40px;
+  background-color: colors.$WHITE;
+
+  .logo {
+    width: 124px;
+    height: 30px;
+    margin: 60px auto;
+    cursor: pointer;
+  }
+
+  hr {
+    width: 240px;
+    height: 1px;
+    background-color: colors.$GRAY100;
+    border: 0;
+  }
+
+  .serviceSection {
+    cursor: pointer;
+
+    .serviceBox {
+      position: relative;
+      width: 240px;
+      height: 60px;
+      padding: 21px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      border: 1px solid #d1d8dc;
+      border-radius: 10px;
+
+      .arrowIcon {
+        position: absolute;
+        top: 16px;
+        width: 22px;
+        margin-left: 140px;
+      }
+
+      .rotate {
+        transform: rotate(180deg);
+      }
+    }
+
+    .dropdownBox {
+      width: 240px;
+      padding: 21px 20px;
+      border: 1px solid #d1d8dc;
+      border-radius: 10px;
+
+      p {
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .serviceAdd {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        span {
+          width: 100%;
+          margin-right: 90px;
+          font-size: 16px;
+          font-weight: 700;
+          color: colors.$PRIMARY;
+        }
+
+        .plusIcon {
+          float: right;
+          width: 35px;
+        }
+      }
+    }
+  }
+
+  .adSection {
+    margin-bottom: 260px;
+
+    .adButton {
+      display: flex;
+      width: 240px;
+      height: 60px;
+      padding: 20px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: colors.$PRIMARY;
+      background-color: colors.$GRAY50;
+      border-radius: 10px;
+
+      .sidebarButton {
+        display: flex;
+        align-items: center;
+      }
+
+      .adIcon {
+        margin-right: 7px;
+      }
+    }
+
+    .inActive {
+      display: flex;
+      width: 240px;
+      height: 60px;
+      padding: 20px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: colors.$GRAY800;
+      border-radius: 10px;
+
+      .sidebarButton {
+        display: flex;
+        align-items: center;
+      }
+
+      .adIcon {
+        margin-right: 7px;
+      }
+    }
+  }
+
+  .guideSection {
+    .guide {
+      position: relative;
+      width: 240px;
+      height: 100px;
+      cursor: pointer;
+      background-color: colors.$SECONDARY01;
+      border-radius: 10px;
+
+      .guideIcon {
+        width: 40px;
+        margin: 30px auto;
+        margin-right: 10px;
+        margin-left: 20px;
+      }
+
+      .useGuide {
+        float: right;
+        margin-top: 30px;
+        margin-right: 70px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .guideMent {
+        position: absolute;
+        float: right;
+        margin-top: 55px;
+        font-size: 14px;
+        color: colors.$GRAY300;
+      }
+    }
+
+    .useMent {
+      margin-top: 40px;
+      margin-bottom: 10px;
+      margin-left: 20px;
+      font-size: 14px;
+      color: colors.$GRAY300;
+    }
+
+    .useTerms {
+      margin-left: 20px;
+      font-size: 14px;
+      color: colors.$GRAY300;
+      text-decoration: underline;
+    }
+  }
+
+  .subject {
+    margin-top: 53px;
+    margin-bottom: 13px;
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: colors.$GRAY300;
+  }
+}
