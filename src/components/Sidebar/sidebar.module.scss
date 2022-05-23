@@ -1,8 +1,9 @@
 @use '/src/styles/constants/colors';
 
 .sidebar {
-  position: fixed;
+  position: absolute;
   top: 0;
+  left: 0;
   width: 320px;
   height: 1290px;
   padding-left: 40px;
@@ -41,6 +42,10 @@
         width: 22px;
         margin-left: 140px;
       }
+
+      .rotate {
+        transform: rotate(180deg);
+      }
     }
 
     .dropdownBox {
@@ -58,8 +63,10 @@
       .serviceAdd {
         display: flex;
         align-items: center;
+        width: 100%;
 
         span {
+          width: 100%;
           margin-right: 90px;
           font-size: 16px;
           font-weight: 700;
@@ -127,7 +134,7 @@
       width: 240px;
       height: 100px;
       cursor: pointer;
-      background-color: colors.$GUIDEBUTTON;
+      background-color: colors.$SECONDARY01;
       border-radius: 10px;
 
       .guideIcon {

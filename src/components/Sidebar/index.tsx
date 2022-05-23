@@ -1,12 +1,13 @@
-import { useState, MouseEvent } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './sidebar.module.scss';
 import { Logo, ArrowDownIcon, DashBoardIcon, GraphIcon, GuidepIcon, PlusIcon } from 'assets/svg/index';
+import { cx } from 'styles';
 
 const Sidebar = () => {
   const [isShow, setIsShow] = useState(false);
 
-  const handleDropdown = (e: MouseEvent<HTMLElement>) => {
+  const handleDropdown = () => {
     setIsShow(!isShow);
   };
 
@@ -18,11 +19,11 @@ const Sidebar = () => {
         <p className={styles.subject}>서비스</p>
         <div className={styles.serviceBox}>
           매드업
-          <ArrowDownIcon className={styles.arrowIcon} />
+          <ArrowDownIcon className={cx(styles.arrowIcon, { [styles.rotate]: isShow })} />
         </div>
         {isShow && (
           <div className={styles.dropdownBox}>
-            <p>코딩</p>
+            <p>매드업</p>
             <div className={styles.serviceAdd}>
               <span>서비스 추가</span>
               <PlusIcon fill='#586cf5' className={styles.plusIcon} />
