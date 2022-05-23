@@ -6,4 +6,5 @@ export { ReactComponent as ProfileIcon } from './profile.svg';
 export { ReactComponent as SettingIcon } from './setting.svg';
 export { ReactComponent as GuidepIcon } from './guide.svg';
 export { ReactComponent as ArrowDownIcon } from './arrowDown.svg';
-export { ReactComponent as ArrowUpIcon } from './svg/arrowUp.svg';
+export { ReactComponent as ArrowUpIcon } from './arrowUp.svg';
+export { ReactComponent as PlusIcon } from './plus.svg';
