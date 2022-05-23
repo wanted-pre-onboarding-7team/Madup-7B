@@ -47,27 +47,28 @@ const CalendarModal = ({ setIsOpenModal }: IProps) => {
 
   const staticRangesKO = defaultStaticRanges.map((item, index) => ({ ...item, label: newRangesLabels[index] }));
 
+  const options = {
+    showDateDisplay: false,
+    showMonthAndYearPickers: false,
+    editableDateInputs: false,
+    locale: ko,
+    onChange,
+    ranges: curRange,
+    moveRangeOnFirstSelection: false,
+    months: 2,
+    inputRanges: [],
+    staticRanges: staticRangesKO,
+    monthDisplayFormat: 'yyy년 MM월',
+  };
+
   return (
     <div className={styles.modalWrap}>
-      <DateRangePicker
-        showDateDisplay={false}
-        showMonthAndYearPickers={false}
-        editableDateInputs={false}
-        locale={ko}
-        onChange={onChange}
-        ranges={curRange}
-        moveRangeOnFirstSelection={false}
-        months={2}
-        inputRanges={[]}
-        direction='horizontal'
-        staticRanges={staticRangesKO}
-        monthDisplayFormat='yyy년 MM월'
-      />
+      <DateRangePicker direction='horizontal' {...options} />
       <div className={styles.btnWrap}>
-        <button type='button' className={styles.closeBtn} onClick={onClickCloseBtn} aria-label='close btn'>
+        <button type='button' className={styles.closeBtn} onClick={onClickCloseBtn} aria-label='close button'>
           닫기
         </button>
-        <button type='button' className={styles.applyBtn} onClick={onClickApplyBtn} aria-label='apply btn'>
+        <button type='button' className={styles.applyBtn} onClick={onClickApplyBtn} aria-label='apply button'>
           적용
         </button>
       </div>
