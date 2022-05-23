@@ -2,7 +2,10 @@
 @use 'src/styles/mixins/_flexbox';
 
 .summary {
-  width: 305px;
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  min-width: 305px;
   height: 420px;
   padding: 0 20px;
   background: colors.$WHITE;

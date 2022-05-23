@@ -1,13 +1,17 @@
 @use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
 
 .sidebar {
-  position: absolute;
+  position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
   width: 320px;
-  height: 1290px;
+  padding-bottom: 306px;
   padding-left: 40px;
+  overflow-y: scroll;
   background-color: colors.$WHITE;
+  box-shadow: 10px 0 10px colors.$SHADOW;
 
   .logo {
     width: 124px;
@@ -24,23 +28,26 @@
   }
 
   .serviceSection {
+    position: relative;
     cursor: pointer;
 
     .serviceBox {
-      position: relative;
+      display: flex;
+      align-items: center;
       width: 240px;
       height: 60px;
       padding: 21px 20px;
       font-size: 16px;
       font-weight: 700;
-      border: 1px solid #d1d8dc;
+      border: 1px solid colors.$GRAY100;
       border-radius: 10px;
 
+      span {
+        width: 100%;
+      }
+
       .arrowIcon {
-        position: absolute;
-        top: 16px;
         width: 22px;
-        margin-left: 140px;
       }
 
       .rotate {
@@ -49,32 +56,46 @@
     }
 
     .dropdownBox {
+      position: absolute;
+      top: 105%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 240px;
-      padding: 21px 20px;
-      border: 1px solid #d1d8dc;
+      overflow: hidden;
+      background: colors.$WHITE;
       border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 15%);
 
-      p {
-        margin-bottom: 20px;
+      li {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 44px;
+        padding: 21px 20px;
         font-size: 16px;
         font-weight: 700;
+
+        &:hover {
+          background: colors.$GRAY100;
+        }
       }
 
       .serviceAdd {
         display: flex;
         align-items: center;
         width: 100%;
+        height: 44px;
+        padding: 21px 20px;
 
         span {
           width: 100%;
-          margin-right: 90px;
           font-size: 16px;
           font-weight: 700;
           color: colors.$PRIMARY;
         }
 
         .plusIcon {
-          float: right;
           width: 35px;
         }
       }
@@ -84,7 +105,24 @@
   .adSection {
     margin-bottom: 260px;
 
-    .adButton {
+    a {
+      display: flex;
+      width: 240px;
+      height: 60px;
+      padding: 20px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: colors.$GRAY800;
+      border-radius: 10px;
+
+      svg {
+        margin-right: 12px;
+        fill: colors.$GRAY800;
+      }
+    }
+
+    .active {
       display: flex;
       width: 240px;
       height: 60px;
@@ -96,41 +134,18 @@
       background-color: colors.$GRAY50;
       border-radius: 10px;
 
-      .sidebarButton {
-        display: flex;
-        align-items: center;
-      }
-
-      .adIcon {
-        margin-right: 7px;
-      }
-    }
-
-    .inActive {
-      display: flex;
-      width: 240px;
-      height: 60px;
-      padding: 20px;
-      margin-bottom: 10px;
-      font-size: 16px;
-      font-weight: 700;
-      color: colors.$GRAY800;
-      border-radius: 10px;
-
-      .sidebarButton {
-        display: flex;
-        align-items: center;
-      }
-
-      .adIcon {
-        margin-right: 7px;
+      svg {
+        margin-right: 12px;
+        fill: colors.$PRIMARY;
       }
     }
   }
 
   .guideSection {
     .guide {
+      @include flexbox.flexbox(center, center);
       position: relative;
+      flex-direction: column;
       width: 240px;
       height: 100px;
       cursor: pointer;
@@ -138,25 +153,22 @@
       border-radius: 10px;
 
       .guideIcon {
+        position: absolute;
+        top: 30px;
+        left: 20px;
         width: 40px;
-        margin: 30px auto;
-        margin-right: 10px;
-        margin-left: 20px;
       }
 
       .useGuide {
-        float: right;
-        margin-top: 30px;
-        margin-right: 70px;
+        margin-bottom: 7px;
+        margin-left: 5px;
         font-size: 16px;
         font-weight: 700;
       }
 
       .guideMent {
-        position: absolute;
-        float: right;
-        margin-top: 55px;
-        font-size: 14px;
+        margin-left: 5px;
+        font-size: 11px;
         color: colors.$GRAY300;
       }
     }

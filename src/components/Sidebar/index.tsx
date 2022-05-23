@@ -18,31 +18,27 @@ const Sidebar = () => {
       <section className={styles.serviceSection} onClick={handleDropdown} role='presentation'>
         <p className={styles.subject}>서비스</p>
         <div className={styles.serviceBox}>
-          매드업
+          <span>매드업</span>
           <ArrowDownIcon className={cx(styles.arrowIcon, { [styles.rotate]: isShow })} />
         </div>
         {isShow && (
-          <div className={styles.dropdownBox}>
-            <p>매드업</p>
+          <ul className={styles.dropdownBox}>
+            <li>매드업</li>
             <div className={styles.serviceAdd}>
               <span>서비스 추가</span>
               <PlusIcon fill='#586cf5' className={styles.plusIcon} />
             </div>
-          </div>
+          </ul>
         )}
       </section>
       <section className={styles.adSection}>
         <p className={styles.subject}>광고 센터</p>
-        <NavLink className={({ isActive }) => (isActive ? styles.adButton : styles.inActive)} to='/'>
-          <button type='button' className={styles.sidebarButton}>
-            <DashBoardIcon className={styles.adIcon} />
-            <span>대시보드</span>
-          </button>
+        <NavLink className={({ isActive }) => (isActive ? styles.active : '')} to='/'>
+          <DashBoardIcon className={styles.adIcon} />
+          <span>대시보드</span>
         </NavLink>
-        <NavLink className={({ isActive }) => (isActive ? styles.adButton : styles.inActive)} to='/advertisement'>
-          <button type='button' className={styles.sidebarButton}>
-            <GraphIcon className={styles.adIcon} />
-          </button>
+        <NavLink className={({ isActive }) => (isActive ? styles.active : '')} to='/advertisement'>
+          <GraphIcon className={styles.adIcon} />
           <span>광고관리</span>
         </NavLink>
       </section>
