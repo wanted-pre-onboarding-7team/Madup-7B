@@ -1,9 +1,11 @@
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import cx from 'classnames';
 
-import { adStatusAtom } from 'state/lever';
 import { ArrowDownIcon } from 'assets/svg';
+import { adStatusAtom } from 'state/lever';
+import { IAd } from 'types/adList';
+import adList from 'data/adLIst.json';
 
 import Summary from './Summary';
 
@@ -11,19 +13,20 @@ import styles from './manageAd.module.scss';
 
 const ManageAd = () => {
   const [isDropDownOpened, setIsDropDownOpened] = useState(true);
-  const [status, setStatus] = useRecoilState(adStatusAtom);
+  const [filteredAdList, setFilteredAdList] = useState<IAd[]>([]);
+  const [adStatus, setAdStatus] = useRecoilState(adStatusAtom);
 
   const toggleOptionHanlder = () => {
     setIsDropDownOpened((prev) => !prev);
   };
 
   const selectStatusHandler = (e: MouseEvent<HTMLLIElement>) => {
-    if (e.currentTarget.dataset.status) setStatus(e.currentTarget.dataset.status);
+    if (e.currentTarget.dataset.status) setAdStatus(e.currentTarget.dataset.status);
   };
 
   const dropDownOptions = isDropDownOpened && (
     <ul className={styles.options} role='menu'>
-      <li data-status='전체' role='menuitem' onClick={selectStatusHandler}>
+      <li data-status='전체 광고' role='menuitem' onClick={selectStatusHandler}>
         전체 광고
       </li>
       <li data-status='진행중인 광고' role='menuitem' onClick={selectStatusHandler}>
@@ -35,6 +38,24 @@ const ManageAd = () => {
     </ul>
   );
 
+  useEffect(() => {
+    if (adStatus === '전체') {
+      setFilteredAdList(adList.ads);
+      return;
+    }
+
+    if (adStatus === '진행중인 광고') {
+      const filteredList = adList.ads.filter((ad) => ad.status === 'active');
+      setFilteredAdList(filteredList);
+      return;
+    }
+
+    const filteredList = adList.ads.filter((ad) => ad.status === 'ended');
+    setFilteredAdList(filteredList);
+  }, [adStatus]);
+
+  const adSummaries = filteredAdList.map((ad) => <Summary key={ad.id} data={ad} />);
+
   return (
     <div className={styles.manageAd}>
       <div className={styles.top}>
@@ -43,18 +64,13 @@ const ManageAd = () => {
           role='presentation'
           onClick={toggleOptionHanlder}
         >
-          <span>{status}</span>
+          <span>{adStatus}</span>
           {dropDownOptions}
           <ArrowDownIcon className={cx({ [styles.rotate]: isDropDownOpened })} />
         </div>
         <button type='button'>광고 만들기</button>
       </div>
-      <div className={styles.ads}>
-        <Summary />
-        <Summary />
-        <Summary />
-        <Summary />
-      </div>
+      <div className={styles.ads}>{adSummaries}</div>
     </div>
   );
 };
