@@ -39,7 +39,7 @@ const ManageAd = () => {
   );
 
   useEffect(() => {
-    if (adStatus === '전체') {
+    if (adStatus === '전체 광고') {
       setFilteredAdList(adList.ads);
       return;
     }
