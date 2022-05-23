@@ -1,0 +1,43 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/position';
+
+.calendar {
+  position: relative;
+}
+
+.display {
+  @include flexbox.flexbox;
+}
+
+.modalWrap {
+  @include position.absolute(0 0 auto auto);
+  @include flexbox.columnFlexbox('center', 'end');
+  border-radius: 20px;
+  box-shadow: 0 4px 24px 0 rgba(34, 37, 41, 12%);
+
+  .btnWrap {
+    margin: 20px;
+
+    button {
+      padding: 12px 20px;
+      border: 1px solid colors.$GRAY100;
+      border-radius: 10px;
+
+      &:hover {
+        box-shadow: 0 4px 14px 0 rgba(34, 37, 41, 6%);
+      }
+    }
+
+    .applyBtn {
+      margin-left: 10px;
+      color: colors.$WHITE;
+      background-color: colors.$BLUE;
+
+      &:hover {
+        background-color: colors.$PRIMARY;
+      }
+    }
+  }
+}
