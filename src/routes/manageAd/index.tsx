@@ -12,7 +12,7 @@ import Summary from './Summary';
 import styles from './manageAd.module.scss';
 
 const ManageAd = () => {
-  const [isDropDownOpened, setIsDropDownOpened] = useState(true);
+  const [isDropDownOpened, setIsDropDownOpened] = useState(false);
   const [filteredAdList, setFilteredAdList] = useState<IAd[]>([]);
   const [adStatus, setAdStatus] = useRecoilState(adStatusAtom);
 
