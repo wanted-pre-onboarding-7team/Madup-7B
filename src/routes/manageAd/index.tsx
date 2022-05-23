@@ -58,6 +58,7 @@ const ManageAd = () => {
 
   return (
     <div className={styles.manageAd}>
+      <h1>광고 관리</h1>
       <div className={styles.top}>
         <div
           className={cx(styles.select, { [styles.focused]: isDropDownOpened })}
