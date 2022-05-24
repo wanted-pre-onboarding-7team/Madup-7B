@@ -26,7 +26,7 @@ const Sidebar = () => {
             <p>매드업</p>
             <div className={styles.serviceAdd}>
               <span>서비스 추가</span>
-              <PlusIcon fill='#586cf5' className={styles.plusIcon} />
+              <PlusIcon className={styles.plusIcon} />
             </div>
           </div>
         )}
