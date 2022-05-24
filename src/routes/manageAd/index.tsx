@@ -7,7 +7,7 @@ import { adStatusAtom } from 'state/lever';
 import { IAd } from 'types/adList';
 import adList from 'data/adLIst.json';
 
-import Summary from './Summary';
+import AdSummary from './AdSummary';
 
 import styles from './manageAd.module.scss';
 
@@ -54,7 +54,7 @@ const ManageAd = () => {
     setFilteredAdList(filteredList);
   }, [adStatus]);
 
-  const adSummaries = filteredAdList.map((ad) => <Summary key={ad.id} data={ad} />);
+  const adSummaries = filteredAdList.map((ad) => <AdSummary key={ad.id} data={ad} />);
 
   return (
     <div className={styles.manageAd}>

@@ -55,6 +55,10 @@
       }
     }
 
+    .focused {
+      border: 1px solid colors.$PRIMARY;
+    }
+
     .dropdownBox {
       position: absolute;
       top: 105%;
@@ -97,6 +101,7 @@
 
         .plusIcon {
           width: 35px;
+          fill: colors.$PRIMARY;
         }
       }
     }
