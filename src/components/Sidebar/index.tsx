@@ -1,7 +1,7 @@
 import { useState, FC, SetStateAction, Dispatch } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import { cx } from 'styles';
+
 import { Logo, ArrowDownIcon, DashBoardIcon, GraphIcon, GuidepIcon, PlusIcon } from 'assets/svg/index';
 
 import styles from './sidebar.module.scss';
@@ -23,6 +23,7 @@ const Sidebar: FC<IProps> = ({ setIsLoading }) => {
       <hr />
       <section className={styles.serviceSection} onClick={handleDropdown} role='presentation'>
         <p className={styles.subject}>서비스</p>
+        {/* dropdown 컴포넌트로 변경 */}
         <div className={styles.serviceBox}>
           <span>매드업</span>
           <ArrowDownIcon className={cx(styles.arrowIcon, { [styles.rotate]: isShow })} />
@@ -39,6 +40,7 @@ const Sidebar: FC<IProps> = ({ setIsLoading }) => {
       </section>
       <section className={styles.adSection}>
         <p className={styles.subject}>광고 센터</p>
+        {/* 컴포넌트로 분리하기 */}
         <NavLink
           className={({ isActive }) => (isActive ? styles.active : '')}
           to='/'

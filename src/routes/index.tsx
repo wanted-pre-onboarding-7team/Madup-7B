@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { useLocation } from 'react-use';
 
-import Sidebar from 'components/Sidebar';
-import Header from 'components/Header';
-import ManageAd from './manageAd';
+import Layout from './Layout';
 import Loading from 'components/Loading';
 
 import styles from './Routes.module.scss';
-
-import DashBoard from './DashBoard/index';
-import { useLocation } from 'react-use';
-import Layout from './Layout';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
