@@ -22,3 +22,10 @@ $FLEX_MAP: (
   align-items: _getFlexValue($ai);
   justify-content: _getFlexValue($jc);
 }
+
+@mixin columnFlexbox($jc: center, $ai: center) {
+  display: flex;
+  flex-direction: column;
+  align-items: _getFlexValue($ai);
+  justify-content: _getFlexValue($jc);
+}
