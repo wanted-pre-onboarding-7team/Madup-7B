@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useState, FC, SetStateAction, Dispatch } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './sidebar.module.scss';
-import { Logo, ArrowDownIcon, DashBoardIcon, GraphIcon, GuidepIcon, PlusIcon } from 'assets/svg/index';
-import { cx } from 'styles';
 
-const Sidebar = () => {
+import { cx } from 'styles';
+import { Logo, ArrowDownIcon, DashBoardIcon, GraphIcon, GuidepIcon, PlusIcon } from 'assets/svg/index';
+
+import styles from './sidebar.module.scss';
+
+interface IProps {
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+}
+
+const Sidebar: FC<IProps> = ({ setIsLoading }) => {
   const [isShow, setIsShow] = useState(false);
 
   const handleDropdown = () => {
@@ -33,11 +39,23 @@ const Sidebar = () => {
       </section>
       <section className={styles.adSection}>
         <p className={styles.subject}>광고 센터</p>
-        <NavLink className={({ isActive }) => (isActive ? styles.active : '')} to='/'>
+        <NavLink
+          className={({ isActive }) => (isActive ? styles.active : '')}
+          to='/'
+          onClick={() => {
+            setIsLoading(true);
+          }}
+        >
           <DashBoardIcon className={styles.adIcon} />
           <span>대시보드</span>
         </NavLink>
-        <NavLink className={({ isActive }) => (isActive ? styles.active : '')} to='/advertisement'>
+        <NavLink
+          className={({ isActive }) => (isActive ? styles.active : '')}
+          to='/advertisement'
+          onClick={() => {
+            setIsLoading(true);
+          }}
+        >
           <GraphIcon className={styles.adIcon} />
           <span>광고관리</span>
         </NavLink>

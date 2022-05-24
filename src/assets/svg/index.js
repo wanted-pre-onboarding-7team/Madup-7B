@@ -8,3 +8,5 @@ export { ReactComponent as GuidepIcon } from './guide.svg';
 export { ReactComponent as ArrowDownIcon } from './arrowDown.svg';
 export { ReactComponent as ArrowUpIcon } from './arrowUp.svg';
 export { ReactComponent as PlusIcon } from './plus.svg';
+export { ReactComponent as LoadingInner } from './loadingInner.svg';
+export { ReactComponent as LoadingOuter } from './loadingOuter.svg';
