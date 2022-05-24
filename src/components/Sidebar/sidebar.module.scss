@@ -48,6 +48,10 @@
       }
     }
 
+    .focused {
+      border: 1px solid colors.$PRIMARY;
+    }
+
     .dropdownBox {
       width: 240px;
       padding: 21px 20px;
@@ -103,6 +107,13 @@
 
       .adIcon {
         margin-right: 7px;
+        fill: colors.$PRIMARY;
+      }
+
+      span {
+        font-size: 16px;
+        font-weight: 700;
+        color: colors.$PRIMARY;
       }
     }
 
@@ -124,6 +135,13 @@
 
       .adIcon {
         margin-right: 7px;
+        fill: colors.$GRAY800;
+      }
+
+      span {
+        font-size: 16px;
+        font-weight: 700;
+        color: colors.$GRAY800;
       }
     }
   }
