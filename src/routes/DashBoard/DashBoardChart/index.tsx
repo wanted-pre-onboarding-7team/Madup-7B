@@ -8,7 +8,7 @@ import {
   VictoryBar,
 } from 'victory';
 
-import TREND_DATA from '../../data/trend.json';
+import TREND_DATA from '../../../data/trend.json';
 
 const data = [
   { quarter: 1, earnings: 13000, earnings2: 6500 },

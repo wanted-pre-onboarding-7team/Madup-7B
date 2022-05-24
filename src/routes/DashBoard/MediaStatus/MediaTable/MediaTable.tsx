@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import dayjs from 'dayjs';
-import { startDateState, endDateState, inclusionDateState } from '../../../states/Date';
+import { startDateState, endDateState, inclusionDateState } from '../../../../states/Date';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-import CHANNEL_DATA from '../../../data/mediaChannel.json';
+import CHANNEL_DATA from '../../../../data/mediaChannel.json';
 import styles from './mediaTable.module.scss';
 
 const dataStructure = [

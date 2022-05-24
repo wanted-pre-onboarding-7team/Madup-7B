@@ -1,6 +1,6 @@
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme, VictoryTooltip } from 'victory';
 
-import CHANNEL_DATA from '../../../data/mediaChannel.json';
+import CHANNEL_DATA from '../../../../data/mediaChannel.json';
 
 import {
   CHART_STYLE,
