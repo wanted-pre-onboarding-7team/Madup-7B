@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import cx from 'classnames';
 
 import { ArrowDownIcon } from 'assets/svg';
-import { adStatusAtom } from 'state/lever';
+import { adStatusAtom } from 'states/adStatus';
 import { IAd } from 'types/adList';
 import adList from 'data/adLIst.json';
 
