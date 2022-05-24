@@ -10,6 +10,7 @@ import styles from './Routes.module.scss';
 
 import DashBoard from './DashBoard/index';
 import { useLocation } from 'react-use';
+import Layout from './Layout';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,22 +27,7 @@ const App = () => {
     };
   }, [path]);
 
-  const content = isLoading ? (
-    <Loading />
-  ) : (
-    <>
-      <Sidebar setIsLoading={setIsLoading} />
-      <div className={styles.content}>
-        <Header />
-        <main>
-          <Routes>
-            <Route path='/' element={<DashBoard />} />
-            <Route path='/advertisement' element={<ManageAd />} />
-          </Routes>
-        </main>
-      </div>
-    </>
-  );
+  const content = isLoading ? <Loading /> : <Layout setIsLoading={setIsLoading} />;
 
   return <div className={styles.app}>{content}</div>;
 };
