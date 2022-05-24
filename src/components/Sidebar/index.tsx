@@ -17,7 +17,7 @@ const Sidebar = () => {
       <hr />
       <section className={styles.serviceSection} onClick={handleDropdown} role='presentation'>
         <p className={styles.subject}>서비스</p>
-        <div className={styles.serviceBox}>
+        <div className={cx(styles.serviceBox, { [styles.focused]: isShow })}>
           <span>매드업</span>
           <ArrowDownIcon className={cx(styles.arrowIcon, { [styles.rotate]: isShow })} />
         </div>
