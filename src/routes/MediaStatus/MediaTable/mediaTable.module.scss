@@ -1,0 +1,65 @@
+@use '/src/styles/constants/colors';
+
+tr {
+  width: 120px;
+  height: 40px;
+  border-top: 1px solid colors.$GRAY50;
+  color: colors.$GRAY800;
+}
+
+th,
+td {
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+}
+
+th {
+  color: colors.$GRAY300;
+}
+
+.tableWrap {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  font-size: 12px;
+
+  .table {
+    display: inline-block;
+    overflow-x: scroll;
+    width: 100%;
+    text-align: right;
+
+    .tableHeader {
+      display: inline-block;
+      width: 960px;
+    }
+
+    .tableBody {
+      display: inline-block;
+      width: 960px;
+      .tableRows {
+        .tableData:first-child {
+          text-align: left;
+        }
+
+        &:last-child {
+          color: colors.$PRIMARY;
+        }
+      }
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 300px;
+      background: linear-gradient(270deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+    }
+  }
+}

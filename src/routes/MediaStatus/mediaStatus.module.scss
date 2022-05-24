@@ -1,0 +1,30 @@
+@use '/src/styles/constants/colors';
+
+.mediaStatusWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 1120px;
+  padding: 0 40px;
+  overflow: hidden;
+
+  .title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    color: colors.$GRAY800;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .chartWrap {
+    width: 100%;
+    height: 718px;
+    padding: 0 40px;
+    background-color: colors.$WHITE;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
+  }
+}
