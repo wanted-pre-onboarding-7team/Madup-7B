@@ -1,0 +1,57 @@
+@use '/src/styles/constants/colors';
+
+.dropButton {
+  position: relative;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  width: 123px;
+  height: 40px;
+  margin-top: 50px;
+  background-color: colors.$WHITE;
+  border: 1px solid colors.$GRAY100;
+  border-radius: 10px;
+
+  .circleIcon {
+    margin-left: 20px;
+  }
+
+  .currentList {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .arrowIcon {
+    position: absolute;
+    width: 22px;
+    margin-left: 90px;
+    fill: colors.$GRAY300;
+  }
+}
+
+.dropBox {
+  position: absolute;
+  top: 105%;
+  z-index: 999;
+  width: 123px;
+  background-color: colors.$WHITE;
+  border: 1px solid colors.$GRAY100;
+  border-radius: 10px;
+
+  .list {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: colors.$GRAY800;
+
+    &:hover {
+      font-weight: 700;
+      background-color: colors.$GRAY50;
+    }
+  }
+}
+
+.focused {
+  color: colors.$GRAY300;
+  border: 2px solid #8592fe;
+}

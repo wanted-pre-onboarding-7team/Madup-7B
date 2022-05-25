@@ -5,7 +5,8 @@ export const CHART_STYLE = {
     },
     barWidth: 30,
     x: 'category',
-    y: 'value',
+    y: 'percent',
+    label: 'value',
   },
 };
 
