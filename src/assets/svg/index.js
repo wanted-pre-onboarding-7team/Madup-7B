@@ -10,3 +10,7 @@ export { ReactComponent as ArrowUpIcon } from './arrowUp.svg';
 export { ReactComponent as PlusIcon } from './plus.svg';
 export { ReactComponent as LoadingInner } from './loadingInner.svg';
 export { ReactComponent as LoadingOuter } from './loadingOuter.svg';
+export { ReactComponent as TriangleIcon } from './triangle.svg';
+export { ReactComponent as GreenCircle } from './greenCircle.svg';
+export { ReactComponent as BlueCircle } from './blueCircle.svg';
+export { ReactComponent as WhiteCircle } from './whiteCircle.svg';

@@ -9,11 +9,16 @@
 
 .display {
   @include flexbox.flexbox;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
 }
 
 .modalWrap {
-  @include position.absolute(0 0 auto auto);
+  @include position.absolute(24px 0 auto auto);
   @include flexbox.columnFlexbox('center', 'end');
+  z-index: 20;
+  background-color: colors.$WHITE;
   border-radius: 20px;
   box-shadow: 0 4px 24px 0 rgba(34, 37, 41, 12%);
 

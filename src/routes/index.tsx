@@ -3,7 +3,6 @@ import { useLocation } from 'react-use';
 
 import Layout from './Layout';
 import Loading from 'components/Loading';
-
 import styles from './Routes.module.scss';
 
 const App = () => {

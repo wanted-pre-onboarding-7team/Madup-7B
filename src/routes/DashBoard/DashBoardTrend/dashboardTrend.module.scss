@@ -1,0 +1,21 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/position';
+
+.wrap {
+  width: 1040px;
+  height: 654px;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  background-color: colors.$WHITE;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgb(0, 0, 0, 4%);
+}
