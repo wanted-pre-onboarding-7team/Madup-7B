@@ -1,7 +1,7 @@
 export const CHART_STYLE = {
   bar: {
     style: {
-      data: { stroke: '#FFFFFF', strokeWidth: 1 },
+      data: { stroke: '#ffffff', strokeWidth: 1 },
     },
     barWidth: 30,
     x: 'category',
@@ -11,7 +11,7 @@ export const CHART_STYLE = {
 };
 
 export const TICK_STYLE_Y = {
-  axis: { strokeWidth: 0.2 },
+  axis: { stroke: '#eceff1', strokeWidth: 1 },
   tickLabels: { fontSize: 12, padding: 20, fontFamily: 'Roboto', fill: '#94a2ad' },
   ticks: { stroke: 'none' },
   grid: { stroke: 'none' },
