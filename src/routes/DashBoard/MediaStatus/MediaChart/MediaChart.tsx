@@ -33,8 +33,8 @@ const MediaChart = () => {
   const dataList = useMemo(() => {
     return [
       { id: 1, data: google },
-      { id: 2, data: facebook },
-      { id: 3, data: naver },
+      { id: 2, data: naver },
+      { id: 3, data: facebook },
       { id: 4, data: kakao },
     ];
   }, [google, facebook, naver, kakao]);

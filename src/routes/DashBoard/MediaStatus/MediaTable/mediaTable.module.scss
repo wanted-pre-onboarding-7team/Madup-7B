@@ -29,7 +29,8 @@ th {
   .table {
     display: inline-block;
     overflow-x: scroll;
-    width: 1150px;
+    // width: 1150px;
+    width: 100%;
     text-align: right;
 
     .tableHeader {

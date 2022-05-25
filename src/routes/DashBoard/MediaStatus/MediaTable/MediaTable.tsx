@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { IfilterList } from 'types/adList';
+import { IaddRevenueType } from 'types/adList';
 import styles from './mediaTable.module.scss';
 import MediaStatusData from '../hooks/MediaStatusData';
 
@@ -19,10 +19,10 @@ const MediaTable = () => {
 
   const tableBody = useMemo(() => {
     return mediaTableStatus?.map((itemList) => {
-      const { channel, click, cost, cpc, ctr, imp, roas } = itemList as IfilterList;
+      const { channel, click, cost, cpc, ctr, imp, roas, revenue } = itemList as IaddRevenueType;
 
       const convertKor =
-        (channel === 'facebook' && '구글') ||
+        (channel === 'facebook' && '페이스북') ||
         (channel === 'naver' && '네이버') ||
         (channel === 'google' && '구글') ||
         (channel === 'kakao' && '카카오') ||
@@ -32,7 +32,9 @@ const MediaTable = () => {
         <tr key={`${roas}-${imp}-${cost}`} className={styles.tableRows}>
           <td className={styles.tableData}>{convertKor}</td>
           <td className={styles.tableData}>{cost.toLocaleString()}원</td>
-          <td className={styles.tableData}>{Math.floor((cost * roas) / 100).toLocaleString()}원</td>
+          <td className={styles.tableData}>
+            {channel === 'total' ? revenue.toLocaleString() : Math.floor((cost * roas) / 100).toLocaleString()}원
+          </td>
           <td className={styles.tableData}>{Math.floor(roas)}%</td>
           <td className={styles.tableData}>{imp.toLocaleString()}</td>
           <td className={styles.tableData}>{click.toLocaleString()}</td>
