@@ -11,12 +11,15 @@ interface IProps {
   list: IData[];
   svgIcon: any;
   setState: SetterOrUpdater<any>;
+  init: string;
 }
 
-export const Dropdown = ({ list, svgIcon, setState }: IProps) => {
+export const Dropdown = ({ list, svgIcon, setState, init }: IProps) => {
+  const initValue = list.filter((item) => item.value === init)[0].name;
+
   const [isShow, setIsShow] = useState(false);
 
-  const [selectedValue, setSelectedValue] = useState(list[0].name);
+  const [selectedValue, setSelectedValue] = useState(initValue);
 
   const handleDropdown = () => {
     setIsShow(!isShow);

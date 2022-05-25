@@ -6,7 +6,6 @@ import {
   VictoryGroup,
   VictoryTooltip,
   VictoryLabel,
-  VictoryCursorContainer,
 } from 'victory';
 import dayjs from 'dayjs';
 
@@ -85,19 +84,14 @@ const DashBoardChart = () => {
                 data.length === 1 ? { data: { fill: ['#4fadf7', '#85da47'][idx] } } : { data: { fill: 'transparent' } }
               }
               size={5}
-              containerComponent={<VictoryCursorContainer cursorDimension='x' />}
               labels={({ datum }) => `${datum.y}`}
               labelComponent={
                 <VictoryTooltip
-                  style={{ fill: 'white', fontSize: 20, textAnchor: 'middle' }}
-                  flyoutStyle={{
-                    stroke: '#3a474e',
-                    fill: '#3a474e',
-                    margin: 10,
-                  }}
+                  style={{ fill: '#ffffff', stroke: 'none', fontSize: 15, textAnchor: 'middle' }}
+                  flyoutStyle={{ stroke: '#ffffff', fill: '#3a474e', strokeWidth: 0, margin: 10 }}
                   flyoutWidth={100}
-                  dx={60}
-                  dy={60}
+                  dx={50}
+                  dy={50}
                 />
               }
               events={[

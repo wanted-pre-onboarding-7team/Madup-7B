@@ -16,7 +16,7 @@ const dateList: IData[] = [
 const GraphDropdowns = () => {
   const [firstGraphCategory, setFirstGraphCategory] = useRecoilState(firstGraphCategoryAtom);
   const [secondGraphCategory, setSecondGraphCategory] = useRecoilState(secondGraphCategoryAtom);
-  const [, setTermCategory] = useRecoilState(termCategoryAtom);
+  const [termCategory, setTermCategory] = useRecoilState(termCategoryAtom);
 
   const fisrtFilteredList = sortList.filter((item) => item.value !== secondGraphCategory);
   const secondFilteredList = sortList.filter((item) => item.value !== firstGraphCategory);
@@ -24,10 +24,20 @@ const GraphDropdowns = () => {
   return (
     <section className={styles.buttonContainer}>
       <div className={styles.categoryDropdownWrap}>
-        <Dropdown list={fisrtFilteredList} svgIcon={<BlueCircle />} setState={setFirstGraphCategory} />
-        <Dropdown list={secondFilteredList} svgIcon={<GreenCircle />} setState={setSecondGraphCategory} />
+        <Dropdown
+          list={fisrtFilteredList}
+          svgIcon={<BlueCircle />}
+          setState={setFirstGraphCategory}
+          init={firstGraphCategory}
+        />
+        <Dropdown
+          list={secondFilteredList}
+          svgIcon={<GreenCircle />}
+          setState={setSecondGraphCategory}
+          init={secondGraphCategory}
+        />
       </div>
-      <Dropdown list={dateList} svgIcon={<WhiteCircle />} setState={setTermCategory} />
+      <Dropdown list={dateList} svgIcon={<WhiteCircle />} setState={setTermCategory} init={termCategory} />
     </section>
   );
 };
