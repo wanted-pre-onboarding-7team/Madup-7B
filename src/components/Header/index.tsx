@@ -5,9 +5,15 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <section>
-        <AlarmIcon className={styles.headerIcon} />
-        <SettingIcon className={styles.headerIcon} />
-        <ProfileIcon />
+        <div className={styles.iconWrapper}>
+          <AlarmIcon />
+        </div>
+        <div className={styles.iconWrapper}>
+          <SettingIcon />
+        </div>
+        <div className={styles.profileWrapper}>
+          <ProfileIcon />
+        </div>
         <span>원티드님</span>
       </section>
     </header>

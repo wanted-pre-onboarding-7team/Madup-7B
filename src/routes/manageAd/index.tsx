@@ -3,11 +3,11 @@ import { useRecoilState } from 'recoil';
 import cx from 'classnames';
 
 import { ArrowDownIcon } from 'assets/svg';
-import { adStatusAtom } from 'state/lever';
+import { adStatusAtom } from 'routes/manageAd/state';
 import { IAd } from 'types/adList';
 import adList from 'data/adLIst.json';
 
-import AdSummary from './AdSummary';
+import AdSummary from './AdSummary/AdSummary';
 
 import styles from './manageAd.module.scss';
 

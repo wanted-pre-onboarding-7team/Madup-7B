@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useState, FC, SetStateAction, Dispatch } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './sidebar.module.scss';
-import { Logo, ArrowDownIcon, DashBoardIcon, GraphIcon, GuidepIcon, PlusIcon } from 'assets/svg/index';
 import { cx } from 'styles';
 
-const Sidebar = () => {
+import { Logo, ArrowDownIcon, DashBoardIcon, GraphIcon, GuidepIcon, PlusIcon } from 'assets/svg/index';
+
+import styles from './sidebar.module.scss';
+
+interface IProps {
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+}
+
+const Sidebar: FC<IProps> = ({ setIsLoading }) => {
   const [isShow, setIsShow] = useState(false);
 
   const handleDropdown = () => {
@@ -17,6 +23,7 @@ const Sidebar = () => {
       <hr />
       <section className={styles.serviceSection} onClick={handleDropdown} role='presentation'>
         <p className={styles.subject}>서비스</p>
+        {/* dropdown 컴포넌트로 변경 */}
         <div className={cx(styles.serviceBox, { [styles.focused]: isShow })}>
           <span>매드업</span>
           <ArrowDownIcon className={cx(styles.arrowIcon, { [styles.rotate]: isShow })} />
@@ -33,11 +40,24 @@ const Sidebar = () => {
       </section>
       <section className={styles.adSection}>
         <p className={styles.subject}>광고 센터</p>
-        <NavLink className={({ isActive }) => (isActive ? styles.active : '')} to='/'>
+        {/* 컴포넌트로 분리하기 */}
+        <NavLink
+          className={({ isActive }) => (isActive ? styles.active : '')}
+          to='/'
+          onClick={() => {
+            setIsLoading(true);
+          }}
+        >
           <DashBoardIcon className={styles.adIcon} />
           <span>대시보드</span>
         </NavLink>
-        <NavLink className={({ isActive }) => (isActive ? styles.active : '')} to='/advertisement'>
+        <NavLink
+          className={({ isActive }) => (isActive ? styles.active : '')}
+          to='/advertisement'
+          onClick={() => {
+            setIsLoading(true);
+          }}
+        >
           <GraphIcon className={styles.adIcon} />
           <span>광고관리</span>
         </NavLink>

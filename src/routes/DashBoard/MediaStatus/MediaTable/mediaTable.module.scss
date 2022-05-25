@@ -20,11 +20,11 @@ th {
 }
 
 .tableWrap {
-  display: inline-block;
-  overflow-x: scroll;
   position: relative;
+  display: inline-block;
   width: 100%;
   font-size: 12px;
+  overflow-x: scroll;
 
   .table {
     display: inline-block;

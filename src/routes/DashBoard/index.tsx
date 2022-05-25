@@ -1,9 +1,9 @@
-import styles from './dashboard.module.scss';
-
 import Calendar from './Calendar';
-import DashBoardChart from './DashBoardChart';
+
 import MediaStatus from './MediaStatus';
 import DashboardTrend from './DashBoardTrend';
+
+import styles from './dashboard.module.scss';
 
 const Dashboard = () => {
   return (
@@ -13,7 +13,6 @@ const Dashboard = () => {
         <Calendar />
       </div>
       <DashboardTrend />
-      <DashBoardChart />
       <MediaStatus />
     </div>
   );
