@@ -1,4 +1,3 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   VictoryLine,
   VictoryAxis,
@@ -11,10 +10,8 @@ import {
 } from 'victory';
 import dayjs from 'dayjs';
 
-import trendData from 'data/trend.json';
-import { firstGraphCategoryAtom, secondGraphCategoryAtom, termCategoryAtom } from 'states/graph';
-import useData from 'hooks/useData';
 import { useGraphData } from './utils';
+import { numFormatter } from 'utils/utils';
 
 interface IDatum {
   x: string;
@@ -24,22 +21,7 @@ interface IDatum {
 type IDataset = IDatum[];
 
 const DashBoardChart = () => {
-  const { getCurTrendData } = useData();
-
-  const FilteredDataByDate = getCurTrendData();
-
-  const [secondGraphCategory, setSecondGraphCategory] = useRecoilState(secondGraphCategoryAtom);
-  const [firstGraphCategory, setFirstGraphCategory] = useRecoilState(firstGraphCategoryAtom);
-
-  const firstGraphCoords: IDataset = FilteredDataByDate.map((data) => {
-    return { x: data.date, y: data[firstGraphCategory] };
-  });
-
-  const secondGraphCoords = FilteredDataByDate.map((data) => {
-    return { x: data.date, y: data[secondGraphCategory] };
-  });
-
-  const graphCoordData: IDataset[] = [firstGraphCoords, secondGraphCoords];
+  const graphCoordData: IDataset[] = useGraphData();
 
   const getMinMaxLevel = (value: number, type: 'max' | 'min') => {
     const len = Math.floor(value).toString().length;
@@ -49,48 +31,40 @@ const DashBoardChart = () => {
   };
 
   const maxima = graphCoordData.map((dataset) => getMinMaxLevel(Math.max(...dataset.map((data) => data.y)), 'max'));
-
   const minima = graphCoordData.map((dataset) => getMinMaxLevel(Math.max(...dataset.map((data) => data.y)), 'min'));
-
   const diff = maxima.map((max, i) => max - minima[i]);
-
-  const term = useRecoilValue(termCategoryAtom);
-
-  const testValue = term === '일별' ? 8 : 2;
-
-  console.log('@@@@@', useGraphData());
 
   return (
     <div>
-      <VictoryChart width={960} height={360} domainPadding={{ x: 100, y: [20, 20] }}>
+      <VictoryChart width={960} height={360} domainPadding={40} singleQuadrantDomainPadding={{ x: false }}>
         <VictoryAxis
-          tickCount={testValue}
+          tickCount={5}
           tickFormat={(x) => dayjs(x).format('MM월 DD일')}
-          style={{ axis: { stroke: '#94A2AD' }, tickLabels: { fill: '#94A2AD' } }}
+          style={{ axis: { stroke: '#94A2AD' }, tickLabels: { fill: '#94A2AD', fontSize: 10 } }}
         />
         {graphCoordData.map((data, idx) => (
           <VictoryAxis
             dependentAxis
-            key={idx}
-            offsetX={[50, 910][idx]}
+            key={`${data}}`}
+            offsetX={[40, 932][idx]}
             tickLabelComponent={<VictoryLabel dy={15} />}
             style={{
               axis: { stroke: 'transparent' },
               ticks: { padding: [-20, 10][idx] },
-              tickLabels: { fill: '#94A2AD', textAnchor: ['start', 'end'][idx] },
+              tickLabels: { fill: '#94A2AD', textAnchor: ['start', 'end'][idx], fontSize: 10 },
               grid: {
                 fill: '#94a2ad',
-                stroke: 'red',
+                stroke: '#94a2ad',
                 pointerEvents: 'painted',
                 strokeWidth: 0.2,
               },
             }}
             tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
-            tickFormat={(value) => diff[idx] * value + minima[idx]}
+            tickFormat={(value) => numFormatter(diff[idx] * value + minima[idx])}
           />
         ))}
         {graphCoordData.map((data, idx) => (
-          <VictoryGroup key={idx}>
+          <VictoryGroup key={`${data}`}>
             <VictoryLine
               data={data}
               y={(datum) => datum.y / maxima[idx]}
@@ -105,6 +79,7 @@ const DashBoardChart = () => {
               }}
               style={{ data: { fill: 'transparent' } }}
               size={5}
+              containerComponent={<VictoryCursorContainer cursorDimension='x' />}
               labels={({ datum }) => `${datum.y}`}
               labelComponent={
                 <VictoryTooltip
@@ -119,7 +94,6 @@ const DashBoardChart = () => {
                   dy={60}
                 />
               }
-              // 따로 빼기
               events={[
                 {
                   target: 'data',

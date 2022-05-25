@@ -22,13 +22,10 @@ export const inclusionDateState = selector<IfilterList[]>({
     const start = dayjs(startDate).format('YYYY-MM-DD');
     const end = dayjs(endDate).format('YYYY-MM-DD');
 
-    // 시작 날짜만 있을 때
     if (start && !end) return CHANNEL_DATA.filter(({ date }) => date >= start);
 
-    // 끝 날짜만 있을 때
     if (!start && end) return CHANNEL_DATA.filter(({ date }) => date <= end);
 
-    // 둘 다 있을 때
     return CHANNEL_DATA.filter(({ date }) => date >= start && date <= end);
   },
 });

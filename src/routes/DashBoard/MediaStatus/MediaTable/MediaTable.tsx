@@ -54,16 +54,18 @@ const MediaTable = () => {
   }, []);
 
   return (
-    <div className={styles.tableWrap}>
-      <table className={styles.table}>
-        <thead className={styles.tableHeader}>
-          <tr className={styles.tableRows}>
-            <th className={styles.tableHead}>&nbsp;</th>
-            {tableTitle}
-          </tr>
-        </thead>
-        <tbody className={styles.tableBody}>{tableBody}</tbody>
-      </table>
+    <div className={styles.boardContainer}>
+      <div className={styles.tableWrap}>
+        <table className={styles.table}>
+          <thead className={styles.tableHeader}>
+            <tr className={styles.tableRows}>
+              <th className={styles.tableHead}>&nbsp;</th>
+              {tableTitle}
+            </tr>
+          </thead>
+          <tbody className={styles.tableBody}>{tableBody}</tbody>
+        </table>
+      </div>
     </div>
   );
 };
