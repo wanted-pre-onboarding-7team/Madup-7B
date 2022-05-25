@@ -12,7 +12,7 @@ export const CHART_STYLE = {
 
 export const TICK_STYLE_Y = {
   axis: { stroke: '#eceff1', strokeWidth: 1 },
-  tickLabels: { fontSize: 12, padding: 20, fontFamily: 'Roboto', fill: '#94a2ad' },
+  tickLabels: { fontSize: 12, padding: 15, fontFamily: 'Roboto', fill: '#94a2ad' },
   ticks: { stroke: 'none' },
   grid: { stroke: 'none' },
 };

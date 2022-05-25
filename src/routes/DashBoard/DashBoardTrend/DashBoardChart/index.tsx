@@ -8,6 +8,7 @@ import {
   VictoryTooltip,
   VictoryLabel,
   VictoryCursorContainer,
+  VictoryVoronoiContainer,
 } from 'victory';
 import dayjs from 'dayjs';
 
@@ -58,11 +59,16 @@ const DashBoardChart = () => {
 
   const testValue = term === '일별' ? 8 : 2;
 
-  console.log('@@@@@', useGraphData());
-
   return (
     <div>
-      <VictoryChart width={960} height={330} domainPadding={40} singleQuadrantDomainPadding={{ x: false }}>
+       <VictoryChart
+        width={960}
+        height={360}
+        domainPadding={40}
+        singleQuadrantDomainPadding={{ x: false }}
+        domainPadding={{ x: 100, y: [20, 20] }}
+        containerComponent={<VictoryVoronoiContainer voronoiDimension='x' labels={() => '바보'} />}
+        >
         <VictoryAxis
           tickCount={testValue}
           tickFormat={(x) => dayjs(x).format('MM월 DD일')}
@@ -105,6 +111,7 @@ const DashBoardChart = () => {
               }}
               style={{ data: { fill: 'transparent' } }}
               size={5}
+              containerComponent={<VictoryCursorContainer cursorDimension='x' />}
               labels={({ datum }) => `${datum.y}`}
               labelComponent={
                 <VictoryTooltip
@@ -119,7 +126,8 @@ const DashBoardChart = () => {
                   dy={60}
                 />
               }
-              // 따로 빼기
+              // 따로
+              // 빼기
               events={[
                 {
                   target: 'data',
