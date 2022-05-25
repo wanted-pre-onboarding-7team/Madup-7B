@@ -1,6 +1,6 @@
 import MediaChart from './MediaChart/MediaChart';
 import MediaTable from './MediaTable/MediaTable';
-import DataMark from './dataMark/DataMark';
+import DataMark from './DataMark/DataMark';
 
 import styles from './mediaStatus.module.scss';
 
