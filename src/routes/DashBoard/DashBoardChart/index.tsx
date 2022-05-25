@@ -22,9 +22,6 @@ const data2 = [
 ];
 
 const DashBoardChart = () => {
-  // const impData = data2.map((item) => item.imp);
-  // const clickData = data2.map((item) => item.click);
-  // const dateData = data2.map((item) => item.date);
 
   return (
     <div>
