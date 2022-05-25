@@ -68,16 +68,22 @@ const DashBoardChart = () => {
             <VictoryLine
               data={data}
               y={(datum) => datum.y / maxima[idx]}
+              animate={{
+                duration: 1000,
+                easing: 'bounce',
+              }}
               style={{ data: { stroke: ['#4fadf7', '#85da47'][idx], strokeWidth: 2 } }}
             />
             <VictoryScatter
               data={data}
               y={(datum) => datum.y / maxima[idx]}
               animate={{
-                duration: 2000,
+                duration: 1000,
                 easing: 'bounce',
               }}
-              style={{ data: { fill: 'transparent' } }}
+              style={
+                data.length === 1 ? { data: { fill: ['#4fadf7', '#85da47'][idx] } } : { data: { fill: 'transparent' } }
+              }
               size={5}
               containerComponent={<VictoryCursorContainer cursorDimension='x' />}
               labels={({ datum }) => `${datum.y}`}

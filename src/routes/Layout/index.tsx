@@ -4,8 +4,10 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import DashBoard from 'routes/DashBoard';
 import ManageAd from 'routes/ManageAd';
+import { useRecoilState } from 'recoil';
 
 import styles from './layout.module.scss';
+import { loadingState } from 'states/atom';
 
 interface IProps {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
