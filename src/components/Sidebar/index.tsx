@@ -23,12 +23,8 @@ const Sidebar: FC<IProps> = ({ setIsLoading }) => {
       <hr />
       <section className={styles.serviceSection} onClick={handleDropdown} role='presentation'>
         <p className={styles.subject}>서비스</p>
-<<<<<<< HEAD
         {/* dropdown 컴포넌트로 변경 */}
-        <div className={styles.serviceBox}>
-=======
         <div className={cx(styles.serviceBox, { [styles.focused]: isShow })}>
->>>>>>> 201f1fa9cf82f7694321feb467bd292c9afa6719
           <span>매드업</span>
           <ArrowDownIcon className={cx(styles.arrowIcon, { [styles.rotate]: isShow })} />
         </div>
