@@ -13,7 +13,7 @@ root.render(
     <RecoilRoot>
       <BrowserRouter>
         <Routes />
-      </BrowserRouter>  
+      </BrowserRouter>
     </RecoilRoot>
   </React.StrictMode>
 );
