@@ -2,7 +2,6 @@ import styles from './calendar.module.scss';
 import { useRecoilState } from 'recoil';
 import { useCallback, useState } from 'react';
 import { DateRangePicker, RangeKeyDict } from 'react-date-range';
-import dayjs from 'dayjs';
 import ko from 'date-fns/locale/ko';
 
 import { endDateState, startDateState } from 'states/atom';
@@ -51,8 +50,8 @@ const CalendarModal = ({ setIsOpenModal }: IProps) => {
     showMonthAndYearPickers: false,
     editableDateInputs: false,
     moveRangeOnFirstSelection: false,
-    minDate: dayjs('2022-02-01').toDate(),
-    maxDate: dayjs('2022-04-20').toDate(),
+    minDate: new Date('2022, 02, 01'),
+    maxDate: new Date('2022, 04, 20'),
     monthDisplayFormat: 'yyy년 MM월',
     inputRanges: [],
     ranges: curRange,

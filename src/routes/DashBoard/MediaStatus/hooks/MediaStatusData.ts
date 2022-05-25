@@ -1,4 +1,4 @@
-import { inclusionDateState } from '../../../../states/atom';
+import { inclusionDateState } from 'states/atom';
 import { useRecoilValue } from 'recoil';
 import { IfilterList } from 'types/adList';
 import { cloneDeep } from 'lodash';
@@ -58,9 +58,6 @@ const MediaStatusData = () => {
       total.roas += roas;
     });
 
-    console.log('sum :', sum);
-    console.log('total :', total);
-
     return [...sum, total];
   };
 
@@ -103,17 +100,6 @@ const MediaStatusData = () => {
         data[channel].find(({ category }) => category === '전환 수')!.value = cvrUnitConversion;
         data[channel].find(({ category }) => category === '매출')!.value = Math.floor((cost * roas) / 100);
       });
-
-      mediaTable?.forEach(({ channel, click, convValue, cost, cpa, cpc, ctr, cvr, date, imp, roas }) => {
-        if (channel === 'total') return;
-
-        const cvrUnitConversion = Math.floor(data[channel].find(({ category }) => category === '전환 수')!.value);
-
-        data[channel].find(({ category }) => category === '전환 수')!.value = cvrUnitConversion;
-        data[channel].find(({ category }) => category === '매출')!.value = Math.floor((cost * roas) / 100);
-      });
-
-      // console.log('mediaTable :', mediaTable);
 
       return data;
     };
