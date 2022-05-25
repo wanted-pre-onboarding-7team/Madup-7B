@@ -8,3 +8,6 @@ export { ReactComponent as GuidepIcon } from './guide.svg';
 export { ReactComponent as ArrowDownIcon } from './arrowDown.svg';
 export { ReactComponent as ArrowUpIcon } from './arrowUp.svg';
 export { ReactComponent as PlusIcon } from './plus.svg';
+export { ReactComponent as GreenCircle } from './greenCircle.svg';
+export { ReactComponent as BlueCircle } from './blueCircle.svg';
+export { ReactComponent as WhiteCircle } from './whiteCircle.svg';

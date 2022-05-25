@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import Sidebar from 'components/Sidebar';
 import Header from 'components/Header';
 import ManageAd from './manageAd';
-
 import styles from './Routes.module.scss';
 
 import DashBoard from './DashBoard/index';
