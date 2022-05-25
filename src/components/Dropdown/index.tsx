@@ -12,9 +12,10 @@ interface IProps {
   svgIcon: any;
   state: any;
   setState: SetterOrUpdater<any>;
+  startValue: string;
 }
 
-export const Dropdown = ({ list, svgIcon, state, setState }: IProps) => {
+export const Dropdown = ({ list, svgIcon, state, setState, startValue }: IProps) => {
   const [isShow, setIsShow] = useState(false);
 
   const [selectedValue, setSelectedValue] = useState(list[0].name);

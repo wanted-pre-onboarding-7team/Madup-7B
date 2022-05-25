@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import {
   VictoryLine,
   VictoryAxis,
@@ -7,13 +7,10 @@ import {
   VictoryGroup,
   VictoryTooltip,
   VictoryLabel,
-  VictoryCursorContainer,
 } from 'victory';
 import dayjs from 'dayjs';
 
-import trendData from 'data/trend.json';
-import { firstGraphCategoryAtom, secondGraphCategoryAtom, termCategoryAtom } from 'states/graph';
-import useData from 'hooks/useData';
+import { termCategoryAtom } from 'states/graph';
 import { useGraphData } from './utils';
 
 interface IDatum {
@@ -24,22 +21,7 @@ interface IDatum {
 type IDataset = IDatum[];
 
 const DashBoardChart = () => {
-  const { getCurTrendData } = useData();
-
-  const FilteredDataByDate = getCurTrendData();
-
-  const [secondGraphCategory, setSecondGraphCategory] = useRecoilState(secondGraphCategoryAtom);
-  const [firstGraphCategory, setFirstGraphCategory] = useRecoilState(firstGraphCategoryAtom);
-
-  const firstGraphCoords: IDataset = FilteredDataByDate.map((data) => {
-    return { x: data.date, y: data[firstGraphCategory] };
-  });
-
-  const secondGraphCoords = FilteredDataByDate.map((data) => {
-    return { x: data.date, y: data[secondGraphCategory] };
-  });
-
-  const graphCoordData: IDataset[] = [firstGraphCoords, secondGraphCoords];
+  const graphCoordData: IDataset[] = useGraphData();
 
   const getMinMaxLevel = (value: number, type: 'max' | 'min') => {
     const len = Math.floor(value).toString().length;
@@ -49,22 +31,14 @@ const DashBoardChart = () => {
   };
 
   const maxima = graphCoordData.map((dataset) => getMinMaxLevel(Math.max(...dataset.map((data) => data.y)), 'max'));
-
   const minima = graphCoordData.map((dataset) => getMinMaxLevel(Math.max(...dataset.map((data) => data.y)), 'min'));
-
   const diff = maxima.map((max, i) => max - minima[i]);
-
-  const term = useRecoilValue(termCategoryAtom);
-
-  const testValue = term === '일별' ? 8 : 2;
-
-  console.log('@@@@@', useGraphData());
 
   return (
     <div>
       <VictoryChart width={960} height={360} domainPadding={{ x: 100, y: [20, 20] }}>
         <VictoryAxis
-          tickCount={testValue}
+          tickCount={5}
           tickFormat={(x) => dayjs(x).format('MM월 DD일')}
           style={{ axis: { stroke: '#94A2AD' }, tickLabels: { fill: '#94A2AD' } }}
         />
