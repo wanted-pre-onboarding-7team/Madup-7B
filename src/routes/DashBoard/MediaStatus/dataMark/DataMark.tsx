@@ -16,8 +16,8 @@ const DataMark = () => {
 export default DataMark;
 
 const dataSet = [
+  { color: '#f7d849', title: '카카오' },
   { color: '#4fadf7', title: '페이스북' },
   { color: '#85da47', title: '네이버' },
   { color: '#ac8af8', title: '구글' },
-  { color: '#f7d849', title: '카카오' },
 ];

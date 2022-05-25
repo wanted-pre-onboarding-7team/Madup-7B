@@ -1,13 +1,13 @@
-import { inclusionDateState } from '../../../../states/atom';
+import { inclusionDateState } from 'states/atom';
 import { useRecoilValue } from 'recoil';
-import { IfilterList } from 'types/adList';
+import { IaddRevenueType } from 'types/adList';
 import { cloneDeep } from 'lodash';
 
 const MediaStatusData = () => {
   const inclusionDate = useRecoilValue(inclusionDateState);
 
   const MediaTableData = () => {
-    const sum: IfilterList[] = Object.values(
+    const sum: IaddRevenueType[] = Object.values(
       inclusionDate.reduce((acc: any, item) => {
         const { channel, click, convValue, cost, cpa, cpc, ctr, cvr, imp, roas } = item;
         acc[channel] = acc[channel]
@@ -30,7 +30,7 @@ const MediaStatusData = () => {
 
     if (!sum) return null;
 
-    const total: IfilterList = {
+    const total: IaddRevenueType = {
       channel: 'total',
       click: 0,
       convValue: 0,
@@ -41,10 +41,11 @@ const MediaStatusData = () => {
       cvr: 0,
       imp: 0,
       roas: 0,
+      revenue: 0,
     };
 
     sum.forEach((itemList) => {
-      const { click, convValue, cost, cpa, cpc, ctr, cvr, imp, roas } = itemList as IfilterList;
+      const { click, convValue, cost, cpa, cpc, ctr, cvr, imp, roas } = itemList;
       if (!total.channel) total.channel = 'total';
 
       total.click += click;
@@ -55,11 +56,9 @@ const MediaStatusData = () => {
       total.ctr += ctr;
       total.cvr += cvr;
       total.imp += imp;
-      total.roas += roas;
+      total.roas += roas; // 매출 광고비
+      total.revenue += Math.floor((cost * roas) / 100);
     });
-
-    console.log('sum :', sum);
-    console.log('total :', total);
 
     return [...sum, total];
   };
@@ -79,7 +78,7 @@ const MediaStatusData = () => {
     const totalKakao = cloneDeep(dataStructure);
 
     const getChartData = () => {
-      const data: Record<string, { value: number; category: string }[]> = {
+      const data: Record<string, { value: number; category: string; percent: number }[]> = {
         google: [...totalGoogle],
         facebook: [...totalFacebook],
         naver: [...totalNaver],
@@ -95,25 +94,28 @@ const MediaStatusData = () => {
 
       const mediaTable = MediaTableData();
 
-      mediaTable?.forEach(({ channel, cost, roas }) => {
+      mediaTable?.forEach(({ channel, cvr, click, cost, imp, roas }) => {
         if (channel === 'total') return;
 
         const cvrUnitConversion = Math.floor(data[channel].find(({ category }) => category === '전환 수')!.value);
 
         data[channel].find(({ category }) => category === '전환 수')!.value = cvrUnitConversion;
         data[channel].find(({ category }) => category === '매출')!.value = Math.floor((cost * roas) / 100);
+
+        const totalData = mediaTable?.filter((item) => item.channel === 'total');
+
+        totalData.forEach((total) => {
+          data[channel].find(({ category }) => category === '광고비')!.percent = (cost / total.cost) * 100;
+          data[channel].find(({ category }) => category === '노출 수')!.percent = (imp / total.imp) * 100;
+          data[channel].find(({ category }) => category === '클릭 수')!.percent = (click / total.click) * 100;
+          data[channel].find(({ category }) => category === '전환 수')!.percent = (cvr / total.cvr) * 100;
+
+          const companyRevenue = (cost * roas) / 100;
+          const totalRevenue = total.revenue;
+
+          data[channel].find(({ category }) => category === '매출')!.percent = (companyRevenue / totalRevenue) * 100;
+        });
       });
-
-      mediaTable?.forEach(({ channel, click, convValue, cost, cpa, cpc, ctr, cvr, date, imp, roas }) => {
-        if (channel === 'total') return;
-
-        const cvrUnitConversion = Math.floor(data[channel].find(({ category }) => category === '전환 수')!.value);
-
-        data[channel].find(({ category }) => category === '전환 수')!.value = cvrUnitConversion;
-        data[channel].find(({ category }) => category === '매출')!.value = Math.floor((cost * roas) / 100);
-      });
-
-      // console.log('mediaTable :', mediaTable);
 
       return data;
     };
