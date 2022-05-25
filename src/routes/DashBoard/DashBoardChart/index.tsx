@@ -1,52 +1,160 @@
+import { useRecoilValue } from 'recoil';
 import {
   VictoryLine,
-  VictoryChart,
   VictoryAxis,
-  VictoryStack,
-  VictoryVoronoiContainer,
+  VictoryChart,
+  VictoryScatter,
+  VictoryGroup,
   VictoryTooltip,
-  VictoryBar,
+  VictoryLabel,
 } from 'victory';
+import dayjs from 'dayjs';
 
-import TREND_DATA from '../../../data/trend.json';
+import trendData from 'data/trend.json';
+import { graphCategoryAtom } from 'states/graph';
 
-const data = [
-  { quarter: 1, earnings: 13000, earnings2: 6500 },
-  { quarter: 2, earnings: 16500, earnings2: 8250 },
-  { quarter: 3, earnings: 14250, earnings2: 7125 },
-  { quarter: 4, earnings: 19000, earnings2: 9500 },
-];
+interface IDatum {
+  x: string;
+  y: number;
+}
 
-const data2 = [
-  { imp: 5147, click: 559, date: '2202-02-01' },
-  { imp: 5338, click: 690, date: '2202-02-02' },
-  { imp: 7140, click: 693, date: '2202-02-03' },
-];
+type IDataset = IDatum[];
 
 const DashBoardChart = () => {
-  const firstData = data2.map((item) => item.imp);
-  const secondData = data2.map((item) => item.click);
-  const dateData = data2.map((item) => item.date);
+  const graphCategories = useRecoilValue(graphCategoryAtom);
 
-  console.log('1', firstData, '2', secondData, '3', dateData);
+  const startDate = Number(dayjs('2022-02-01').format('MMDD'));
+  const endData = Number(dayjs('2022-02-07').format('MMDD'));
 
-  // console.log(TREND_DATA.report.daily);
-  // TREND_DATA.report.daily.forEach((d) => {
-  //   console.log(d);
-  // });
+  const dailyTrendData = trendData.report.daily;
+
+  const FilteredDataByDate = dailyTrendData.filter((data) => {
+    const convertedDate = Number(dayjs(data.date).format('MMDD'));
+
+    return startDate <= convertedDate && convertedDate <= endData;
+  });
+
+  const firstGraphCoords: IDataset = FilteredDataByDate.map((data) => {
+    return { x: data.date, y: data[graphCategories[0]] };
+  });
+
+  const secondGraphCoords = FilteredDataByDate.map((data) => {
+    return { x: data.date, y: data[graphCategories[1]] };
+  });
+
+  const graphCoordData: IDataset[] = [firstGraphCoords, secondGraphCoords];
+
+  const getMinMaxLevel = (value: number, type: 'max' | 'min') => {
+    const len = Math.floor(value).toString().length;
+    const unit = 10 ** len;
+    const level = type === 'max' ? Math.ceil(value / unit) * unit : Math.floor(value / unit) / unit;
+    return level;
+  };
+
+  const maxima = graphCoordData.map((dataset) => getMinMaxLevel(Math.max(...dataset.map((data) => data.y)), 'max'));
+
+  const minima = graphCoordData.map((dataset) => getMinMaxLevel(Math.max(...dataset.map((data) => data.y)), 'min'));
+
+  const diff = maxima.map((max, i) => max - minima[i]);
 
   return (
     <div>
-      <VictoryChart domainPadding={20}>
-        <VictoryAxis dependentAxis tickValues={[0.25, 0.5, 0.75, 1]} tickFormat={(t) => `${t * 10}imp`} />
+      <VictoryChart width={960} height={360} domainPadding={{ x: 100, y: [20, 20] }}>
         <VictoryAxis
-          dependentAxis
-          offsetX={970}
-          tickValues={[0.25, 0.5, 0.75, 1]}
-          tickFormat={(t) => `${t * 10}click`}
+          tickValues={graphCoordData[0].map((data) => data.x)}
+          tickFormat={(x) => dayjs(x).format('MM월 DD일')}
+          style={{ axis: { stroke: '#94A2AD' }, tickLabels: { fill: '#94A2AD' } }}
         />
-        <VictoryLine data={data2} x='date' y='imp' />
-        <VictoryLine data={data2} x='date' y='click' />
+        {graphCoordData.map((data, idx) => (
+          <VictoryAxis
+            dependentAxis
+            key={idx}
+            offsetX={[50, 910][idx]}
+            tickLabelComponent={<VictoryLabel dy={15} />}
+            style={{
+              axis: { stroke: 'transparent' },
+              ticks: { padding: [-20, 10][idx] },
+              tickLabels: { fill: '#94A2AD', textAnchor: ['start', 'end'][idx] },
+              grid: {
+                fill: '#94a2ad',
+                stroke: '#94a2ad',
+                pointerEvents: 'painted',
+                strokeWidth: 0.2,
+              },
+            }}
+            tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
+            tickFormat={(value) => diff[idx] * value + minima[idx]}
+          />
+        ))}
+        {graphCoordData.map((data, idx) => (
+          <VictoryGroup key={idx}>
+            <VictoryLine
+              data={data}
+              y={(datum) => datum.y / maxima[idx]}
+              style={{ data: { stroke: ['#4fadf7', '#85da47'][idx], strokeWidth: 2 } }}
+            />
+            <VictoryScatter
+              data={data}
+              y={(datum) => datum.y / maxima[idx]}
+              animate={{
+                duration: 2000,
+                easing: 'bounce',
+              }}
+              style={{ data: { fill: 'transparent' } }}
+              size={5}
+              labels={({ datum }) => `${datum.y}`}
+              labelComponent={
+                <VictoryTooltip
+                  style={{ fill: 'white', fontSize: 20, textAnchor: 'middle' }}
+                  flyoutStyle={{
+                    stroke: '#3a474e',
+                    fill: '#3a474e',
+                    margin: 10,
+                  }}
+                  flyoutWidth={100}
+                  dx={60}
+                  dy={60}
+                />
+              }
+              events={[
+                {
+                  target: 'data',
+                  eventHandlers: {
+                    onMouseOver: () => {
+                      return [
+                        {
+                          target: 'data',
+                          mutation: () => {
+                            return {
+                              size: 5,
+                              style: { fill: ['#4fadf7', '#85da47'][idx], stroke: '#ffffff', strokeWidth: 3 },
+                            };
+                          },
+                        },
+                        {
+                          target: 'labels',
+                          mutation: () => ({ active: true }),
+                        },
+                      ];
+                    },
+                    onMouseOut: () => {
+                      return [
+                        {
+                          target: 'data',
+                          mutation: () => {},
+                        },
+                        {
+                          target: 'labels',
+                          mutation: () => ({ active: false }),
+                        },
+                      ];
+                    },
+                  },
+                },
+              ]}
+            />
+          </VictoryGroup>
+        ))}
       </VictoryChart>
     </div>
   );
