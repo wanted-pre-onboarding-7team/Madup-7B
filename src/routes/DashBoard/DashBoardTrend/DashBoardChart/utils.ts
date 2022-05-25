@@ -18,7 +18,7 @@ export const useGraphData = () => {
   const filteredDataByDate = getCurTrendData();
 
   // 일간
-  if (termCategory === '일별') {
+  if (termCategory === '일간') {
     const firstGraphCoords = filteredDataByDate.map((data) => {
       return { x: data.date, y: data[firstGraphCategory] };
     });

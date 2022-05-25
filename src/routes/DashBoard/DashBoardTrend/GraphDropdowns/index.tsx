@@ -10,7 +10,7 @@ import { IData, sortList } from '../DashBoardChart/list';
 import { GreenCircle, BlueCircle, WhiteCircle } from 'assets/svg/index';
 
 const dateList: IData[] = [
-  { id: 0, name: '일별', value: '일별' },
+  { id: 0, name: '일간', value: '일간' },
   { id: 1, name: '주간', value: '주간' },
 ];
 
