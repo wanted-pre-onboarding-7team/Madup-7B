@@ -13,6 +13,11 @@ export const endDateState = atom<Date | undefined>({
   default: new Date('2022, 02, 04'),
 });
 
+export const loadingState = atom<boolean>({
+  key: '#loadingState',
+  default: false,
+});
+
 export const inclusionDateState = selector<IfilterList[]>({
   key: 'inclusionDateState',
   get: ({ get }) => {
