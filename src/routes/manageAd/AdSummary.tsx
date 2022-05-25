@@ -43,7 +43,7 @@ const AdSummary: FC<IProps> = ({ data }) => {
 
   return (
     <div className={styles.summary}>
-      <h2>{`${prefix}` + `${data.title}`}</h2>
+      <h2>{prefix + data.title}</h2>
       <dl>
         <div className={styles.category}>
           <dt>상태</dt>
