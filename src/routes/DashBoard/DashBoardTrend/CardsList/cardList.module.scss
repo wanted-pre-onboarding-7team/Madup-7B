@@ -1,0 +1,54 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/position';
+
+.indicatorCardsList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.indicatorCard {
+  width: 1fr;
+  padding: 18px 18px 18px 40px;
+  border: 1px solid colors.$GRAY50;
+  border-radius: 10px;
+
+  .valueName {
+    font-size: 12px;
+    font-weight: 500;
+    color: colors.$GRAY300;
+  }
+
+  .valueWrap {
+    @include flexbox.flexbox('between');
+    margin-top: 10px;
+  }
+
+  .sameValue {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .suffix {
+    @include flexbox.flexbox;
+    font-size: 12px;
+    font-weight: 500;
+    color: colors.$GRAY300;
+
+    .diffValue {
+      margin-left: 2px;
+    }
+
+    .triangleDown {
+      fill: colors.$SECONDARY02;
+    }
+
+    .triangleUp {
+      fill: colors.$GRAPH02;
+      transform: rotate(180deg);
+    }
+  }
+}

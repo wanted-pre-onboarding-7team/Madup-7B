@@ -1,10 +1,12 @@
+import styles from './calendar.module.scss';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { startDateState, endDateState } from 'states/atom';
-import styles from './calendar.module.scss';
-import CalendarModal from './CalendarModal';
-import { ArrowDownIcon } from 'assets/svg';
+
 import { dateToYMD } from 'utils/date';
+import { startDateState, endDateState } from 'states/atom';
+
+import { ArrowDownIcon } from 'assets/svg';
+import CalendarModal from './CalendarModal';
 
 const Calendar = () => {
   const [startDate] = useRecoilState(startDateState);

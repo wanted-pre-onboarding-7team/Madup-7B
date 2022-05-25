@@ -9,7 +9,7 @@ export const startDateState = atom<Date | undefined>({
 });
 
 export const endDateState = atom<Date | undefined>({
-  key: 'endDateState',
+  key: '#endDateState',
   default: new Date('2022, 02, 04'),
 });
 
