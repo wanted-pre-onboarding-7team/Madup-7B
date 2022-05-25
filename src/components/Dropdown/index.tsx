@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { ArrowDownIcon } from 'assets/svg';
 import cx from 'classnames';
 import styles from './dropdown.module.scss';
-import { current } from '@reduxjs/toolkit';
 
 interface Props {
   list: string[];
@@ -24,12 +23,10 @@ export const Dropdown = ({ list, svgIcon }: Props) => {
   };
 
   return (
-    <div className={styles.container}>
-      <button className={cx(styles.dropButton, { [styles.focused]: isShow })} type='button' onClick={handleDropdown}>
-        <span className={styles.circleIcon}>{svgIcon}</span>
-        <span className={styles.currentList}>{list[currentIndex]}</span>
-        <ArrowDownIcon className={styles.arrowIcon} />
-      </button>
+    <button className={cx(styles.dropButton, { [styles.focused]: isShow })} type='button' onClick={handleDropdown}>
+      <span className={styles.circleIcon}>{svgIcon}</span>
+      <span className={styles.currentList}>{list[currentIndex]}</span>
+      <ArrowDownIcon className={styles.arrowIcon} />
       {isShow && (
         <ul className={styles.dropBox}>
           {list.map((el, index) => (
@@ -45,6 +42,6 @@ export const Dropdown = ({ list, svgIcon }: Props) => {
           ))}
         </ul>
       )}
-    </div>
+    </button>
   );
 };
