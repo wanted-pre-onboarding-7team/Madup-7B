@@ -25,28 +25,10 @@ const GraphDropdowns = () => {
   return (
     <section className={styles.buttonContainer}>
       <div className={styles.categoryDropdownWrap}>
-        <Dropdown
-          list={fisrtFilteredList}
-          svgIcon={<BlueCircle />}
-          state={firstGraphCategory}
-          setState={setFirstGraphCategory}
-          startValue={fisrtFilteredList[0].name}
-        />
-        <Dropdown
-          list={secondFilteredList}
-          svgIcon={<GreenCircle />}
-          state={secondGraphCategory}
-          setState={setSecondGraphCategory}
-          startValue={secondFilteredList[0].name}
-        />
+        <Dropdown list={fisrtFilteredList} svgIcon={<BlueCircle />} setState={setFirstGraphCategory} />
+        <Dropdown list={secondFilteredList} svgIcon={<GreenCircle />} setState={setSecondGraphCategory} />
       </div>
-      <Dropdown
-        list={dateList}
-        svgIcon={<WhiteCircle />}
-        state={termCategory}
-        setState={setTermCategory}
-        startValue={dateList[0].value}
-      />
+      <Dropdown list={dateList} svgIcon={<WhiteCircle />} setState={setTermCategory} />
     </section>
   );
 };
