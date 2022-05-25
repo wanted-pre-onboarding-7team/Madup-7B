@@ -33,3 +33,7 @@ export interface IfilterList {
   cpa: number;
   roas: number;
 }
+
+export interface IaddRevenueType extends IfilterList {
+  revenue: number;
+}
