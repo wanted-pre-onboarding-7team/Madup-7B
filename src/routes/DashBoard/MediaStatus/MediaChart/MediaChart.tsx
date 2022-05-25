@@ -48,7 +48,7 @@ const MediaChart = () => {
           {...CHART_STYLE.bar}
           labels={({ datum }) => datum.value}
           labelComponent={tooltip}
-          cornerRadius={{ top: data === kakao ? 3 : 0 }}
+          cornerRadius={{ top: data === kakao ? 6 : 0 }}
         />
       );
     });

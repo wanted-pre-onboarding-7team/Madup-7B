@@ -10,11 +10,10 @@ import { IData } from 'routes/DashBoard/DashBoardTrend/DashBoardChart/list';
 interface IProps {
   list: IData[];
   svgIcon: any;
-  state: any;
   setState: SetterOrUpdater<any>;
 }
 
-export const Dropdown = ({ list, svgIcon, state, setState }: IProps) => {
+export const Dropdown = ({ list, svgIcon, setState }: IProps) => {
   const [isShow, setIsShow] = useState(false);
 
   const [selectedValue, setSelectedValue] = useState(list[0].name);

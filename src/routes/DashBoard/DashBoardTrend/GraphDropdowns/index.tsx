@@ -10,8 +10,8 @@ import { IData, sortList } from '../DashBoardChart/list';
 import { GreenCircle, BlueCircle, WhiteCircle } from 'assets/svg/index';
 
 const dateList: IData[] = [
-  { id: 0, name: '주간', value: '주간' },
-  { id: 1, name: '일별', value: '일별' },
+  { id: 0, name: '일간', value: '일간' },
+  { id: 1, name: '주간', value: '주간' },
 ];
 
 const GraphDropdowns = () => {
@@ -25,20 +25,10 @@ const GraphDropdowns = () => {
   return (
     <section className={styles.buttonContainer}>
       <div className={styles.categoryDropdownWrap}>
-        <Dropdown
-          list={fisrtFilteredList}
-          svgIcon={<BlueCircle />}
-          state={firstGraphCategory}
-          setState={setFirstGraphCategory}
-        />
-        <Dropdown
-          list={secondFilteredList}
-          svgIcon={<GreenCircle />}
-          state={secondGraphCategory}
-          setState={setSecondGraphCategory}
-        />
+        <Dropdown list={fisrtFilteredList} svgIcon={<BlueCircle />} setState={setFirstGraphCategory} />
+        <Dropdown list={secondFilteredList} svgIcon={<GreenCircle />} setState={setSecondGraphCategory} />
       </div>
-      <Dropdown list={dateList} svgIcon={<WhiteCircle />} state={termCategory} setState={setTermCategory} />
+      <Dropdown list={dateList} svgIcon={<WhiteCircle />} setState={setTermCategory} />
     </section>
   );
 };

@@ -1,7 +1,7 @@
 export const CHART_STYLE = {
   bar: {
     style: {
-      data: { stroke: '#ffffff', strokeWidth: 1 },
+      data: { stroke: '#FFFFFF', strokeWidth: 1 },
     },
     barWidth: 30,
     x: 'category',

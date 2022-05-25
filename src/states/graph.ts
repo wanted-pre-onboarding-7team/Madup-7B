@@ -12,9 +12,9 @@ export const secondGraphCategoryAtom = atom<Tcategory>({
   default: 'cost',
 });
 
-export type TtermCategory = '일별' | '주간';
+export type TtermCategory = '일간' | '주간';
 
 export const termCategoryAtom = atom<TtermCategory>({
   key: '#termCategory',
-  default: '일별',
+  default: '일간',
 });
