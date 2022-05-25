@@ -1,4 +1,3 @@
-import { useRecoilValue } from 'recoil';
 import {
   VictoryLine,
   VictoryAxis,
@@ -8,12 +7,11 @@ import {
   VictoryTooltip,
   VictoryLabel,
   VictoryCursorContainer,
-  VictoryVoronoiContainer,
 } from 'victory';
 import dayjs from 'dayjs';
 
-import { termCategoryAtom } from 'states/graph';
 import { useGraphData } from './utils';
+import { numFormatter } from 'utils/utils';
 
 interface IDatum {
   x: string;
@@ -38,14 +36,7 @@ const DashBoardChart = () => {
 
   return (
     <div>
-       <VictoryChart
-        width={960}
-        height={360}
-        domainPadding={40}
-        singleQuadrantDomainPadding={{ x: false }}
-        domainPadding={{ x: 100, y: [20, 20] }}
-        containerComponent={<VictoryVoronoiContainer voronoiDimension='x' labels={() => '바보'} />}
-        >
+      <VictoryChart width={960} height={360} domainPadding={40} singleQuadrantDomainPadding={{ x: false }}>
         <VictoryAxis
           tickCount={5}
           tickFormat={(x) => dayjs(x).format('MM월 DD일')}
@@ -54,7 +45,7 @@ const DashBoardChart = () => {
         {graphCoordData.map((data, idx) => (
           <VictoryAxis
             dependentAxis
-            key={idx}
+            key={`${data}}`}
             offsetX={[40, 932][idx]}
             tickLabelComponent={<VictoryLabel dy={15} />}
             style={{
@@ -69,11 +60,11 @@ const DashBoardChart = () => {
               },
             }}
             tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
-            tickFormat={(value) => diff[idx] * value + minima[idx]}
+            tickFormat={(value) => numFormatter(diff[idx] * value + minima[idx])}
           />
         ))}
         {graphCoordData.map((data, idx) => (
-          <VictoryGroup key={idx}>
+          <VictoryGroup key={`${data}`}>
             <VictoryLine
               data={data}
               y={(datum) => datum.y / maxima[idx]}
@@ -103,8 +94,6 @@ const DashBoardChart = () => {
                   dy={60}
                 />
               }
-              // 따로
-              // 빼기
               events={[
                 {
                   target: 'data',

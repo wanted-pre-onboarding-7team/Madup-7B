@@ -2,7 +2,7 @@ import styles from './calendar.module.scss';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { dateToYMD } from 'utils/date';
+import { dateToYMD } from 'utils/utils';
 import { startDateState, endDateState } from 'states/atom';
 
 import { ArrowDownIcon } from 'assets/svg';

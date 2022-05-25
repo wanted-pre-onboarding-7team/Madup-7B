@@ -6,7 +6,6 @@ import { Dropdown } from 'components/Dropdown';
 import { firstGraphCategoryAtom, secondGraphCategoryAtom, termCategoryAtom } from 'states/graph';
 import { IData, sortList } from '../DashBoardChart/list';
 
-// before
 import { GreenCircle, BlueCircle, WhiteCircle } from 'assets/svg/index';
 
 const dateList: IData[] = [
@@ -17,7 +16,7 @@ const dateList: IData[] = [
 const GraphDropdowns = () => {
   const [firstGraphCategory, setFirstGraphCategory] = useRecoilState(firstGraphCategoryAtom);
   const [secondGraphCategory, setSecondGraphCategory] = useRecoilState(secondGraphCategoryAtom);
-  const [termCategory, setTermCategory] = useRecoilState(termCategoryAtom);
+  const [, setTermCategory] = useRecoilState(termCategoryAtom);
 
   const fisrtFilteredList = sortList.filter((item) => item.value !== secondGraphCategory);
   const secondFilteredList = sortList.filter((item) => item.value !== firstGraphCategory);

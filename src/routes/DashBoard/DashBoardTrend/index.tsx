@@ -4,8 +4,6 @@ import DashBoardChart from './DashBoardChart';
 import IndicatorCardsList from './CardsList';
 import GraphDropdowns from './GraphDropdowns';
 
-// before
-
 const DashBoardTrend = () => {
   return (
     <div className={styles.wrap}>
