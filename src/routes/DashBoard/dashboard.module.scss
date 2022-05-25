@@ -1,10 +1,9 @@
-
 @use 'src/styles/constants/_colors';
 @use 'src/styles/mixins/_flexbox';
 
 .titleWrap {
   @include flexbox.flexbox('between');
-  width: 1040px;
+  width: 100%;
   height: 80px;
 
   h1 {
@@ -13,8 +12,8 @@
     line-height: 30px;
     color: colors.$GRAY800;
   }
+}
 
 .dashboardWrap {
   width: 100%;
-
 }

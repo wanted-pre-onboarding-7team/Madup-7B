@@ -12,4 +12,3 @@ export { ReactComponent as TriangleIcon } from './triangle.svg';
 export { ReactComponent as GreenCircle } from './greenCircle.svg';
 export { ReactComponent as BlueCircle } from './blueCircle.svg';
 export { ReactComponent as WhiteCircle } from './whiteCircle.svg';
-

@@ -22,7 +22,6 @@ const data2 = [
 ];
 
 const DashBoardChart = () => {
-
   return (
     <div>
       <section className={styles.buttonContainer}>
