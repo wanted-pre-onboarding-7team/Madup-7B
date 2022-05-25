@@ -4,9 +4,11 @@ import { useLocation } from 'react-use';
 import Layout from './Layout';
 import Loading from 'components/Loading';
 import styles from './Routes.module.scss';
+import { useRecoilState } from 'recoil';
+import { loadingState } from 'states/atom';
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const path = useLocation();
 
@@ -18,7 +20,7 @@ const App = () => {
     return () => {
       clearTimeout(loadingTime);
     };
-  }, [path]);
+  }, [path, isLoading, setIsLoading]);
 
   const content = isLoading ? <Loading /> : <Layout setIsLoading={setIsLoading} />;
 

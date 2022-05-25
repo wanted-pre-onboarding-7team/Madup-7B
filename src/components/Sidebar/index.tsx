@@ -1,6 +1,8 @@
 import { useState, FC, SetStateAction, Dispatch } from 'react';
 import { NavLink } from 'react-router-dom';
 import { cx } from 'styles';
+import { useRecoilState } from 'recoil';
+import { loadingState } from 'states/atom';
 
 import { Logo, ArrowDownIcon, DashBoardIcon, GraphIcon, GuidepIcon, PlusIcon } from 'assets/svg/index';
 
