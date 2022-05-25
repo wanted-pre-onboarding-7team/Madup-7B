@@ -1,14 +1,14 @@
 import styles from './calendar.module.scss';
 import { useRecoilState } from 'recoil';
 import { useCallback, useState } from 'react';
-import { DateRangePicker, defaultStaticRanges, RangeKeyDict } from 'react-date-range';
+import { DateRangePicker, RangeKeyDict } from 'react-date-range';
+import dayjs from 'dayjs';
 import ko from 'date-fns/locale/ko';
 
+import { endDateState, startDateState } from 'states/atom';
+import './calendarModal.scss';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import { endDateState, startDateState } from 'states/atom';
-
-const newRangesLabels = ['오늘', '어제', '이번 주', '지난 주', '이번 달', '지난 달'];
 
 interface IProps {
   setIsOpenModal: Function;
@@ -45,20 +45,19 @@ const CalendarModal = ({ setIsOpenModal }: IProps) => {
     setIsOpenModal(false);
   };
 
-  const staticRangesKO = defaultStaticRanges.map((item, index) => ({ ...item, label: newRangesLabels[index] }));
-
   const options = {
+    onChange,
     showDateDisplay: false,
     showMonthAndYearPickers: false,
     editableDateInputs: false,
-    locale: ko,
-    onChange,
-    ranges: curRange,
     moveRangeOnFirstSelection: false,
-    months: 2,
-    inputRanges: [],
-    staticRanges: staticRangesKO,
+    minDate: dayjs('2022-02-01').toDate(),
+    maxDate: dayjs('2022-04-20').toDate(),
     monthDisplayFormat: 'yyy년 MM월',
+    inputRanges: [],
+    ranges: curRange,
+    locale: ko,
+    months: 2,
   };
 
   return (
