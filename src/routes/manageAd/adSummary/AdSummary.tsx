@@ -8,8 +8,6 @@ interface IProps {
   data: IAd;
 }
 
-// ROAS = (해당 광고로부터의 매출 / 광고 비용 ) x 100
-
 const AdSummary: FC<IProps> = ({ data }) => {
   const prefix = data.adType === 'web' ? '웹광고_ ' : '앱광고_ ';
   const status = data.status === 'active' ? '진행중' : '종료';
