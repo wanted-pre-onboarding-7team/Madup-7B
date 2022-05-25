@@ -28,7 +28,7 @@ const DashBoardChart = () => {
   const secondData = data2.map((item) => item.click);
   const dateData = data2.map((item) => item.date);
 
-  console.log('1', firstData, '2', secondData, '3', dateData);
+  // console.log('1', firstData, '2', secondData, '3', dateData);
 
   // console.log(TREND_DATA.report.daily);
   // TREND_DATA.report.daily.forEach((d) => {
