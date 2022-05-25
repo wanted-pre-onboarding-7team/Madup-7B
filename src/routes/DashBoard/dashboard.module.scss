@@ -1,0 +1,15 @@
+@use 'src/styles/constants/_colors';
+@use 'src/styles/mixins/_flexbox';
+
+.titleWrap {
+  @include flexbox.flexbox('between');
+  width: 1040px;
+  height: 80px;
+
+  h1 {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 30px;
+    color: colors.$GRAY800;
+  }
+}

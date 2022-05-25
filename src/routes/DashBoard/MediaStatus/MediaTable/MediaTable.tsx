@@ -78,7 +78,7 @@ const MediaTable = () => {
     const kakaoList = inclusionDate.filter((el) => el.channel === 'kakao');
   };
 
-  console.log(absfd());
+  // console.log(absfd());
 
   // function fncArrMerge2() {
   //   const arr = [
