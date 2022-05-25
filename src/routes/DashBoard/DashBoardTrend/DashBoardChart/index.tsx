@@ -1,4 +1,4 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   VictoryLine,
   VictoryAxis,
@@ -7,11 +7,14 @@ import {
   VictoryGroup,
   VictoryTooltip,
   VictoryLabel,
+  VictoryCursorContainer,
 } from 'victory';
 import dayjs from 'dayjs';
 
 import trendData from 'data/trend.json';
-import { graphCategoryAtom } from 'states/graph';
+import { firstGraphCategoryAtom, secondGraphCategoryAtom, termCategoryAtom } from 'states/graph';
+import useData from 'hooks/useData';
+import { useGraphData } from './utils';
 
 interface IDatum {
   x: string;
@@ -21,25 +24,19 @@ interface IDatum {
 type IDataset = IDatum[];
 
 const DashBoardChart = () => {
-  const graphCategories = useRecoilValue(graphCategoryAtom);
+  const { getCurTrendData } = useData();
 
-  const startDate = Number(dayjs('2022-02-01').format('MMDD'));
-  const endData = Number(dayjs('2022-02-07').format('MMDD'));
+  const FilteredDataByDate = getCurTrendData();
 
-  const dailyTrendData = trendData.report.daily;
-
-  const FilteredDataByDate = dailyTrendData.filter((data) => {
-    const convertedDate = Number(dayjs(data.date).format('MMDD'));
-
-    return startDate <= convertedDate && convertedDate <= endData;
-  });
+  const [secondGraphCategory, setSecondGraphCategory] = useRecoilState(secondGraphCategoryAtom);
+  const [firstGraphCategory, setFirstGraphCategory] = useRecoilState(firstGraphCategoryAtom);
 
   const firstGraphCoords: IDataset = FilteredDataByDate.map((data) => {
-    return { x: data.date, y: data[graphCategories[0]] };
+    return { x: data.date, y: data[firstGraphCategory] };
   });
 
   const secondGraphCoords = FilteredDataByDate.map((data) => {
-    return { x: data.date, y: data[graphCategories[1]] };
+    return { x: data.date, y: data[secondGraphCategory] };
   });
 
   const graphCoordData: IDataset[] = [firstGraphCoords, secondGraphCoords];
@@ -57,11 +54,17 @@ const DashBoardChart = () => {
 
   const diff = maxima.map((max, i) => max - minima[i]);
 
+  const term = useRecoilValue(termCategoryAtom);
+
+  const testValue = term === '일별' ? 8 : 2;
+
+  console.log('@@@@@', useGraphData());
+
   return (
     <div>
       <VictoryChart width={960} height={360} domainPadding={{ x: 100, y: [20, 20] }}>
         <VictoryAxis
-          tickValues={graphCoordData[0].map((data) => data.x)}
+          tickCount={testValue}
           tickFormat={(x) => dayjs(x).format('MM월 DD일')}
           style={{ axis: { stroke: '#94A2AD' }, tickLabels: { fill: '#94A2AD' } }}
         />
@@ -77,7 +80,7 @@ const DashBoardChart = () => {
               tickLabels: { fill: '#94A2AD', textAnchor: ['start', 'end'][idx] },
               grid: {
                 fill: '#94a2ad',
-                stroke: '#94a2ad',
+                stroke: 'red',
                 pointerEvents: 'painted',
                 strokeWidth: 0.2,
               },
@@ -116,6 +119,7 @@ const DashBoardChart = () => {
                   dy={60}
                 />
               }
+              // 따로 빼기
               events={[
                 {
                   target: 'data',

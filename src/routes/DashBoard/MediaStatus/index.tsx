@@ -7,7 +7,7 @@ import styles from './mediaStatus.module.scss';
 const MediaStatus = () => {
   return (
     <div className={styles.mediaStatusWrap}>
-      <h1 className={styles.title}>매체 현황</h1>
+      <h2 className={styles.title}>매체 현황</h2>
       <div className={styles.chartWrap}>
         <MediaChart />
         <DataMark />

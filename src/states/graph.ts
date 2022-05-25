@@ -1,8 +1,20 @@
 import { atom } from 'recoil';
 
-export type category = 'imp' | 'click' | 'cost' | 'conv' | 'convValue' | 'ctr' | 'cvr' | 'cpc' | 'cpa' | 'roas';
+export type Tcategory = 'conv' | 'click' | 'cost' | 'imp' | 'convValue' | 'ctr' | 'cvr' | 'cpc' | 'cpa' | 'roas';
 
-export const graphCategoryAtom = atom<category[]>({
-  key: '#graphCategoryAtom',
-  default: ['imp', 'click'],
+export const firstGraphCategoryAtom = atom<Tcategory>({
+  key: '#firstGraphCategoryAtom',
+  default: 'roas',
+});
+
+export const secondGraphCategoryAtom = atom<Tcategory>({
+  key: '#secondGraphCategoryAtom',
+  default: 'cost',
+});
+
+export type TtermCategory = '일별' | '주간';
+
+export const termCategoryAtom = atom<TtermCategory>({
+  key: '#termCategory',
+  default: '일별',
 });
