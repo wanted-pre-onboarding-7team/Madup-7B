@@ -1,0 +1,28 @@
+@use '/src/styles/constants/colors';
+
+.dataMarkWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  margin: 40px 0 80px 0;
+
+  .dataMark {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 40px;
+
+    .circle {
+      width: 10px;
+      height: 10px;
+      margin-right: 10px;
+      border-radius: 100%;
+    }
+
+    .title {
+      font-size: 12px;
+      color: colors.$GRAY300;
+    }
+  }
+}

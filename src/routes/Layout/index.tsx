@@ -3,7 +3,7 @@ import Sidebar from 'components/Sidebar';
 import { Dispatch, FC, SetStateAction } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import DashBoard from 'routes/DashBoard';
-import ManageAd from 'routes/manageAd';
+import ManageAd from 'routes/ManageAd';
 
 import styles from './layout.module.scss';
 

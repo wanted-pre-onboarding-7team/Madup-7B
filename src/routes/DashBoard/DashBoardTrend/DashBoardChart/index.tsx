@@ -61,30 +61,32 @@ const DashBoardChart = () => {
 
   return (
     <div>
-      <VictoryChart
+       <VictoryChart
         width={960}
         height={360}
+        domainPadding={40}
+        singleQuadrantDomainPadding={{ x: false }}
         domainPadding={{ x: 100, y: [20, 20] }}
         containerComponent={<VictoryVoronoiContainer voronoiDimension='x' labels={() => '바보'} />}
-      >
+        >
         <VictoryAxis
           tickCount={testValue}
           tickFormat={(x) => dayjs(x).format('MM월 DD일')}
-          style={{ axis: { stroke: '#94A2AD' }, tickLabels: { fill: '#94A2AD' } }}
+          style={{ axis: { stroke: '#94A2AD' }, tickLabels: { fill: '#94A2AD', fontSize: 10 } }}
         />
         {graphCoordData.map((data, idx) => (
           <VictoryAxis
             dependentAxis
             key={idx}
-            offsetX={[50, 910][idx]}
+            offsetX={[40, 932][idx]}
             tickLabelComponent={<VictoryLabel dy={15} />}
             style={{
               axis: { stroke: 'transparent' },
               ticks: { padding: [-20, 10][idx] },
-              tickLabels: { fill: '#94A2AD', textAnchor: ['start', 'end'][idx] },
+              tickLabels: { fill: '#94A2AD', textAnchor: ['start', 'end'][idx], fontSize: 10 },
               grid: {
                 fill: '#94a2ad',
-                stroke: 'red',
+                stroke: '#94a2ad',
                 pointerEvents: 'painted',
                 strokeWidth: 0.2,
               },
