@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme, VictoryTooltip } from 'victory';
 import {
   CHART_STYLE,
@@ -7,9 +8,9 @@ import {
   TOOLTIP_FLYOUT_STYLE,
   COLOR_SCALE,
 } from './chartStyle';
+
 import styles from './mediaChart.module.scss';
 import MediaStatusData from '../hooks/MediaStatusData';
-import { useMemo } from 'react';
 
 const tickFormat = ['광고비', '매출', '노출 수', '클릭 수', '전환 수'];
 
@@ -30,6 +31,7 @@ const MediaChart = () => {
   const { MediaChartData } = MediaStatusData();
   const { google, facebook, naver, kakao } = MediaChartData();
   const tooltip = CustomTooltip();
+
   const dataList = useMemo(() => {
     return [
       { id: 1, data: google },

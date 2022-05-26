@@ -1,4 +1,4 @@
-import { useState, MouseEvent, SVGProps, FunctionComponent } from 'react';
+import { useState, MouseEvent } from 'react';
 import { SetterOrUpdater } from 'recoil';
 import cx from 'classnames';
 

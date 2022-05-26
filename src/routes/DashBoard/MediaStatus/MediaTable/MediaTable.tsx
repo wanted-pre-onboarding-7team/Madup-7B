@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import { IaddRevenueType } from 'types/adList';
 import styles from './mediaTable.module.scss';
 import MediaStatusData from '../hooks/MediaStatusData';

@@ -9,6 +9,7 @@ import { endDateState, startDateState } from 'states/atom';
 
 const useData = () => {
   dayjs.extend(isBetween);
+
   const [startDate] = useRecoilState(startDateState);
   const [endDate] = useRecoilState(endDateState);
 

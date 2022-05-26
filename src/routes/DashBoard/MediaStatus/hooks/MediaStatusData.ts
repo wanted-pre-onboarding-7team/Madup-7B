@@ -56,7 +56,7 @@ const MediaStatusData = () => {
       total.ctr += ctr;
       total.cvr += cvr;
       total.imp += imp;
-      total.roas += roas; // 매출 광고비
+      total.roas += roas;
       total.revenue += Math.floor((cost * roas) / 100);
     });
 
