@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { DateRangePicker, RangeKeyDict } from 'react-date-range';
 import ko from 'date-fns/locale/ko';
 
-import { endDateState, startDateState } from 'states/atom';
+import { endDateState, startDateState, loadingState } from 'states/atom';
 import './calendarModal.scss';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -16,6 +16,7 @@ interface IProps {
 const CalendarModal = ({ setIsOpenModal }: IProps) => {
   const [startDateRecoil, setStartDateRecoil] = useRecoilState(startDateState);
   const [endDateRecoil, setEndDateRecoil] = useRecoilState(endDateState);
+  const [, setIsLoading] = useRecoilState(loadingState);
 
   const [curRange, setCurRange] = useState([
     {
@@ -37,6 +38,8 @@ const CalendarModal = ({ setIsOpenModal }: IProps) => {
 
   const onClickApplyBtn = () => {
     const { startDate, endDate } = curRange[0];
+
+    setIsLoading(true);
 
     setStartDateRecoil(startDate);
     setEndDateRecoil(endDate);
