@@ -89,7 +89,6 @@ const DashBoardChart = () => {
                 <VictoryTooltip
                   style={TOOLTIP_STYLE}
                   flyoutStyle={TOOLTIP_FLYOUT_STYLE}
-
                   flyoutWidth={100}
                   dx={50}
                   dy={50}

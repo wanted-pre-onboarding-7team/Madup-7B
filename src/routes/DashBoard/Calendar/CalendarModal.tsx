@@ -19,7 +19,6 @@ const CalendarModal = ({ setIsOpenModal }: IProps) => {
   const [endDateRecoil, setEndDateRecoil] = useRecoilState(endDateState);
   const setIsLoading = useSetRecoilState(loadingState);
 
-
   const [currentRange, setCurrentRange] = useState([
     {
       startDate: startDateRecoil,
