@@ -25,6 +25,8 @@ const DashBoardChart = () => {
 
   const xOffset = [40, 932];
   const tickPadding = [-20, 10];
+  const anchors = ['start', 'end'];
+  const colors = ['#4fadf7', '#85da47'];
 
   const maxima = graphCoordData.map((dataset) => getMinMaxLevel(Math.max(...dataset.map((data) => data.y)), 'max'));
   const minima = graphCoordData.map((dataset) => getMinMaxLevel(Math.max(...dataset.map((data) => data.y)), 'min'));
@@ -47,7 +49,7 @@ const DashBoardChart = () => {
             style={{
               axis: { stroke: 'transparent' },
               ticks: { padding: tickPadding[idx] },
-              tickLabels: { fill: '#94A2AD', textAnchor: ['start', 'end'][idx], fontSize: 10 },
+              tickLabels: { fill: '#94A2AD', textAnchor: anchors[idx], fontSize: 10 },
               grid: {
                 fill: '#94a2ad',
                 stroke: '#94a2ad',
@@ -68,7 +70,7 @@ const DashBoardChart = () => {
                 duration: 1000,
                 easing: 'bounce',
               }}
-              style={{ data: { stroke: ['#4fadf7', '#85da47'][idx], strokeWidth: 2 } }}
+              style={{ data: { stroke: colors[idx], strokeWidth: 2 } }}
             />
             <VictoryScatter
               data={data}
@@ -77,9 +79,7 @@ const DashBoardChart = () => {
                 duration: 1000,
                 easing: 'bounce',
               }}
-              style={
-                data.length === 1 ? { data: { fill: ['#4fadf7', '#85da47'][idx] } } : { data: { fill: 'transparent' } }
-              }
+              style={data.length === 1 ? { data: { fill: colors[idx] } } : { data: { fill: 'transparent' } }}
               size={5}
               labels={({ datum }) => `${datum.y}`}
               labelComponent={
@@ -102,7 +102,7 @@ const DashBoardChart = () => {
                           mutation: () => {
                             return {
                               size: 5,
-                              style: { fill: ['#4fadf7', '#85da47'][idx], stroke: '#ffffff', strokeWidth: 3 },
+                              style: { fill: colors[idx], stroke: '#ffffff', strokeWidth: 3 },
                             };
                           },
                         },

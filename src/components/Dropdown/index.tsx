@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, SVGProps, FunctionComponent } from 'react';
 import { SetterOrUpdater } from 'recoil';
 import cx from 'classnames';
 
@@ -9,7 +9,7 @@ import { IData } from 'routes/DashBoard/DashBoardTrend/GraphDropdowns/list';
 
 interface IProps {
   list: IData[];
-  svgIcon: any;
+  svgIcon?: any;
   setState: SetterOrUpdater<any>;
   init: string;
 }

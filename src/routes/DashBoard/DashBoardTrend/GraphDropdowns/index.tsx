@@ -6,7 +6,7 @@ import { Dropdown } from 'components/Dropdown';
 import { firstGraphCategoryAtom, secondGraphCategoryAtom, termCategoryAtom } from 'states/graph';
 import { IData, sortList } from './list';
 
-import { GreenCircle, BlueCircle, WhiteCircle } from 'assets/svg/index';
+import { GreenCircle, BlueCircle } from 'assets/svg/index';
 
 const dateList: IData[] = [
   { id: 0, name: '일간', value: '일간' },
@@ -37,7 +37,7 @@ const GraphDropdowns = () => {
           init={secondGraphCategory}
         />
       </div>
-      <Dropdown list={dateList} svgIcon={<WhiteCircle />} setState={setTermCategory} init={termCategory} />
+      <Dropdown list={dateList} setState={setTermCategory} init={termCategory} />
     </section>
   );
 };
