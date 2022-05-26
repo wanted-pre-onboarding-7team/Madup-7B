@@ -1,10 +1,11 @@
 import styles from './calendar.module.scss';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useCallback, useState } from 'react';
 import { DateRangePicker, RangeKeyDict } from 'react-date-range';
 import ko from 'date-fns/locale/ko';
 
 import { endDateState, startDateState, loadingState } from 'states/atom';
+
 import './calendarModal.scss';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -16,9 +17,9 @@ interface IProps {
 const CalendarModal = ({ setIsOpenModal }: IProps) => {
   const [startDateRecoil, setStartDateRecoil] = useRecoilState(startDateState);
   const [endDateRecoil, setEndDateRecoil] = useRecoilState(endDateState);
-  const [, setIsLoading] = useRecoilState(loadingState);
+  const setIsLoading = useSetRecoilState(loadingState);
 
-  const [curRange, setCurRange] = useState([
+  const [currentRange, setCurrentRange] = useState([
     {
       startDate: startDateRecoil,
       endDate: endDateRecoil,
@@ -29,7 +30,7 @@ const CalendarModal = ({ setIsOpenModal }: IProps) => {
   const onChange = useCallback(({ selection }: RangeKeyDict) => {
     const { startDate, endDate } = selection;
 
-    setCurRange([{ startDate, endDate, key: 'selection' }]);
+    setCurrentRange([{ startDate, endDate, key: 'selection' }]);
   }, []);
 
   const onClickCloseBtn = () => {
@@ -37,7 +38,7 @@ const CalendarModal = ({ setIsOpenModal }: IProps) => {
   };
 
   const onClickApplyBtn = () => {
-    const { startDate, endDate } = curRange[0];
+    const { startDate, endDate } = currentRange[0];
 
     setIsLoading(true);
 
@@ -57,7 +58,7 @@ const CalendarModal = ({ setIsOpenModal }: IProps) => {
     maxDate: new Date('2022, 04, 20'),
     monthDisplayFormat: 'yyy년 MM월',
     inputRanges: [],
-    ranges: curRange,
+    ranges: currentRange,
     locale: ko,
     months: 2,
   };

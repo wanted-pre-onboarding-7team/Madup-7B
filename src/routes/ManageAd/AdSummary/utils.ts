@@ -14,9 +14,7 @@ export const getBudgetFormat = (budget: number) => {
   const thousand = Math.floor(budget / 1_000) - tenThousand * 10;
 
   if (tenThousand < 10 && thousand > 0) return `${tenThousand * 10 + thousand}천원`;
-
   if (tenThousand < 10) return `${tenThousand * 10}천원`;
-
   if (thousand) return `${tenThousand}만 ${thousand}천원`;
 
   return `${tenThousand}만원`;

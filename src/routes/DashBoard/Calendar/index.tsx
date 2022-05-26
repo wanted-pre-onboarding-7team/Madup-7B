@@ -1,6 +1,6 @@
 import styles from './calendar.module.scss';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 import { dateToYMD } from 'utils/utils';
 import { startDateState, endDateState } from 'states/atom';
@@ -9,8 +9,8 @@ import { ArrowDownIcon } from 'assets/svg';
 import CalendarModal from './CalendarModal';
 
 const Calendar = () => {
-  const [startDate] = useRecoilState(startDateState);
-  const [endDate] = useRecoilState(endDateState);
+  const startDate = useRecoilValue(startDateState);
+  const endDate = useRecoilValue(endDateState);
   const [isModalOpen, setIsOpenModal] = useState(false);
 
   const displayDateRange = `${dateToYMD(startDate)} ~ ${dateToYMD(endDate)}`;

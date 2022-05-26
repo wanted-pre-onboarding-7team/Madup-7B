@@ -13,9 +13,9 @@ export const useGraphData = () => {
   const firstGraphCategory = useRecoilValue(firstGraphCategoryAtom);
   const secondGraphCategory = useRecoilValue(secondGraphCategoryAtom);
   const termCategory = useRecoilValue(termCategoryAtom);
-  const { getCurTrendData } = useData();
+  const { getCurrentTrendData } = useData();
 
-  const filteredDataByDate = getCurTrendData();
+  const filteredDataByDate = getCurrentTrendData();
 
   if (termCategory === '일간') {
     const firstGraphCoords = filteredDataByDate.map((data) => {
