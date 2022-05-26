@@ -1,9 +1,8 @@
-import Calendar from './Calendar';
-
-import MediaStatus from './MediaStatus';
-import DashboardTrend from './DashBoardTrend';
-
 import styles from './dashboard.module.scss';
+
+import Calendar from './Calendar';
+import DashboardTrend from './DashBoardTrend';
+import MediaStatus from './MediaStatus';
 
 const Dashboard = () => {
   return (

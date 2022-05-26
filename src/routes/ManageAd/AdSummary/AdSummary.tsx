@@ -1,8 +1,8 @@
-import { FC } from 'react';
 import styles from './adSummary.module.scss';
+import { FC } from 'react';
 
 import { IAd } from 'types/adList';
-import { getBudgetFormat, getDateFormat, getPriceFormat } from './calc';
+import { getBudgetFormat, getDateFormat, getPriceFormat } from './utils';
 
 interface IProps {
   data: IAd;

@@ -6,13 +6,13 @@ import { calDiffData, calSumData } from './utils';
 import IndicatorCard from './Card';
 
 const IndicatorCardsList = () => {
-  const { getCurTrendData, getPrevTrendData } = useData();
+  const { getCurrentTrendData, getPrevTrendData } = useData();
 
   const prevSumData = calSumData(getPrevTrendData());
-  const curSumData = calSumData(getCurTrendData());
-  const diff = calDiffData(prevSumData, curSumData);
+  const currentSumData = calSumData(getCurrentTrendData());
+  const diff = calDiffData(prevSumData, currentSumData);
 
-  const { roas, cost, imp, click, conv, revenue } = curSumData;
+  const { roas, cost, imp, click, conv, revenue } = currentSumData;
 
   return (
     <ul className={styles.indicatorCardsList}>

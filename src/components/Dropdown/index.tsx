@@ -5,11 +5,11 @@ import cx from 'classnames';
 import { ArrowDownIcon } from 'assets/svg';
 
 import styles from './dropdown.module.scss';
-import { IData } from 'routes/DashBoard/DashBoardTrend/DashBoardChart/list';
+import { IData } from 'routes/DashBoard/DashBoardTrend/GraphDropdowns/list';
 
 interface IProps {
   list: IData[];
-  svgIcon: any;
+  svgIcon?: any;
   setState: SetterOrUpdater<any>;
   init: string;
 }

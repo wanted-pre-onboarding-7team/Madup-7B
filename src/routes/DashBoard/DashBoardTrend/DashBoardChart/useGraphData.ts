@@ -1,21 +1,16 @@
 import { useRecoilValue } from 'recoil';
+
+import { IDataset } from './types';
 import useData from 'hooks/useData';
 import { firstGraphCategoryAtom, secondGraphCategoryAtom, termCategoryAtom } from 'states/graph';
-
-interface IDatum {
-  x: string;
-  y: number;
-}
-
-type IDataset = IDatum[];
 
 export const useGraphData = () => {
   const firstGraphCategory = useRecoilValue(firstGraphCategoryAtom);
   const secondGraphCategory = useRecoilValue(secondGraphCategoryAtom);
   const termCategory = useRecoilValue(termCategoryAtom);
-  const { getCurTrendData } = useData();
+  const { getCurrentTrendData } = useData();
 
-  const filteredDataByDate = getCurTrendData();
+  const filteredDataByDate = getCurrentTrendData();
 
   if (termCategory === '일간') {
     const firstGraphCoords = filteredDataByDate.map((data) => {

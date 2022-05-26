@@ -9,6 +9,7 @@ import { endDateState, startDateState } from 'states/atom';
 
 const useData = () => {
   dayjs.extend(isBetween);
+
   const [startDate] = useRecoilState(startDateState);
   const [endDate] = useRecoilState(endDateState);
 
@@ -19,7 +20,7 @@ const useData = () => {
     return trendDataByPeriod;
   };
 
-  const getCurTrendData = (): IDaily[] => {
+  const getCurrentTrendData = (): IDaily[] => {
     const filteredTrendData = fetchTrendDataByPeriod(startDate, endDate);
     return filteredTrendData;
   };
@@ -33,7 +34,7 @@ const useData = () => {
   };
 
   return {
-    getCurTrendData,
+    getCurrentTrendData,
     getPrevTrendData,
   };
 };
