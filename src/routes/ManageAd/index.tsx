@@ -1,15 +1,14 @@
+import styles from './manageAd.module.scss';
 import { useState, MouseEvent, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import cx from 'classnames';
 
-import { ArrowDownIcon } from 'assets/svg';
 import { adStatusAtom } from './state';
 import { IAd } from 'types/adList';
 import adList from 'data/adLIst.json';
 
 import AdSummary from './AdSummary/AdSummary';
-
-import styles from './manageAd.module.scss';
+import { ArrowDownIcon } from 'assets/svg';
 
 const ManageAd = () => {
   const [isDropDownOpened, setIsDropDownOpened] = useState(false);
@@ -20,20 +19,26 @@ const ManageAd = () => {
     setIsDropDownOpened((prev) => !prev);
   };
 
-  const selectStatusHandler = (e: MouseEvent<HTMLLIElement>) => {
+  const selectStatusHandler = (e: MouseEvent<HTMLButtonElement>) => {
     if (e.currentTarget.dataset.status) setAdStatus(e.currentTarget.dataset.status);
   };
 
   const dropDownOptions = isDropDownOpened && (
-    <ul className={styles.options} role='menu'>
-      <li data-status='전체 광고' role='menuitem' onClick={selectStatusHandler}>
-        전체 광고
+    <ul className={styles.options}>
+      <li>
+        <button type='button' data-status='전체 광고' onClick={selectStatusHandler} aria-label='drowdown button'>
+          전체 광고
+        </button>
       </li>
-      <li data-status='진행중인 광고' role='menuitem' onClick={selectStatusHandler}>
-        진행중인 광고
+      <li>
+        <button type='button' data-status='진행중인 광고' onClick={selectStatusHandler} aria-label='drowdown button'>
+          진행중인 광고
+        </button>
       </li>
-      <li data-status='중지 광고' role='menuitem' onClick={selectStatusHandler}>
-        중지 광고
+      <li>
+        <button type='button' data-status='중지 광고' onClick={selectStatusHandler} aria-label='drowdown button'>
+          중지 광고
+        </button>
       </li>
     </ul>
   );
@@ -60,16 +65,18 @@ const ManageAd = () => {
     <div className={styles.manageAd}>
       <h1>광고 관리</h1>
       <div className={styles.top}>
-        <div
+        <button
+          type='button'
           className={cx(styles.select, { [styles.focused]: isDropDownOpened })}
-          role='presentation'
           onClick={toggleOptionHanlder}
         >
           <span>{adStatus}</span>
           {dropDownOptions}
           <ArrowDownIcon className={cx({ [styles.rotate]: isDropDownOpened })} />
-        </div>
-        <button type='button'>광고 만들기</button>
+        </button>
+        <button type='button' className={styles.creatAdBtn}>
+          광고 만들기
+        </button>
       </div>
       <div className={styles.ads}>{adSummaries}</div>
     </div>

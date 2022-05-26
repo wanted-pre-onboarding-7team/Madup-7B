@@ -1,11 +1,12 @@
+import styles from './Routes.module.scss';
 import { useEffect } from 'react';
 import { useLocation } from 'react-use';
-
-import Layout from './Layout';
-import Loading from 'components/Loading';
-import styles from './Routes.module.scss';
 import { useRecoilState } from 'recoil';
+
 import { loadingState } from 'states/atom';
+
+import Loading from 'components/Loading';
+import Layout from './Layout';
 
 const App = () => {
   const [isLoading, setIsLoading] = useRecoilState(loadingState);
