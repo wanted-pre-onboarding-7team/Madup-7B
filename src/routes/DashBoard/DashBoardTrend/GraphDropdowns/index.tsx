@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 
 import { Dropdown } from 'components/Dropdown';
 import { firstGraphCategoryAtom, secondGraphCategoryAtom, termCategoryAtom } from 'states/graph';
-import { IData, sortList } from '../DashBoardChart/list';
+import { IData, sortList } from './list';
 
 import { GreenCircle, BlueCircle, WhiteCircle } from 'assets/svg/index';
 

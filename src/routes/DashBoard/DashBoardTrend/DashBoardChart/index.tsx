@@ -9,15 +9,9 @@ import {
 } from 'victory';
 import dayjs from 'dayjs';
 
-import { useGraphData } from './utils';
+import { useGraphData } from './useGraphData';
 import { numFormatter } from 'utils/utils';
-
-interface IDatum {
-  x: string;
-  y: number;
-}
-
-type IDataset = IDatum[];
+import { IDataset } from './types';
 
 const DashBoardChart = () => {
   const graphCoordData: IDataset[] = useGraphData();
@@ -28,6 +22,9 @@ const DashBoardChart = () => {
     const level = type === 'max' ? Math.ceil(value / unit) * unit : Math.floor(value / unit) / unit;
     return level;
   };
+
+  const xOffset = [40, 932];
+  const tickPadding = [-20, 10];
 
   const maxima = graphCoordData.map((dataset) => getMinMaxLevel(Math.max(...dataset.map((data) => data.y)), 'max'));
   const minima = graphCoordData.map((dataset) => getMinMaxLevel(Math.max(...dataset.map((data) => data.y)), 'min'));
@@ -45,11 +42,11 @@ const DashBoardChart = () => {
           <VictoryAxis
             dependentAxis
             key={`${data}}`}
-            offsetX={[40, 932][idx]}
+            offsetX={xOffset[idx]}
             tickLabelComponent={<VictoryLabel dy={15} />}
             style={{
               axis: { stroke: 'transparent' },
-              ticks: { padding: [-20, 10][idx] },
+              ticks: { padding: tickPadding[idx] },
               tickLabels: { fill: '#94A2AD', textAnchor: ['start', 'end'][idx], fontSize: 10 },
               grid: {
                 fill: '#94a2ad',
